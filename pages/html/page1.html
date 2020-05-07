@@ -29,8 +29,23 @@
       </div>
       <div class="active">{{message}}</div>
       <div :class="active">{{message}}</div>
-      <!--boolean值为true则使用类，反之则不使用-->
-      <div :class="{active:false,line:true}">{{message}}</div>
+      <!--动态绑定class语法：boolean值为true则使用类，反之则不使用-->
+      <div :class="{active:isActive,line:isLine}">{{message}}</div>
+      <div :class="getClasses()">{{message}}</div>
+      <!--数组内的样式会全部加载-->
+      <div :class="['active','line']">{{message}}</div>
+      <div :style="{color:'blue'}">{{message}}</div>
+      <div :style="{color:finalColor}">{{message}}</div>
+      <div :style="[baseStyle,baseStyle1]">{{message}}</div>
+      <button @click="btnClick">变色</button>
+      <ul>
+        <li v-for="(movie,index) of movies" style="cursor: pointer;" :class="{active:index===c}" @click="movieClick(index)">{{movie}}</li>
+      </ul>
+
+      <div>{{getFullName()}}</div>
+      <div>{{name}}</div>
+
+      <div>总价：{{totalPrice}}</div>
     </div>
 
     <script src="../../common/vue/vue.js"></script>
@@ -44,6 +59,59 @@
           active:'active',
           isActive:true,
           isLine:true,
+          movies:['蜘蛛侠','海尔兄弟','火影忍者','海贼王'],
+          c:0,
+          finalColor:'green',
+          baseStyle:{color:'black'},
+          baseStyle1:{fontSize:'20px'},
+          firstName:'zhang',
+          lastName:'yunpeng',
+          books:[
+            {id:1,name:'js高级教程',price:98},
+            {id:2,name:'微机原理',price:108},
+            {id:3,name:'数据结构',price:85},
+            {id:4,name:'计算机组成原理',price:113},
+          ]
+        },
+        methods:{
+          btnClick(){
+            this.isActive=!this.isActive;
+            this.isLine=!this.isLine;
+          },
+          getClasses:function(){
+            return {active:!this.isActive,line:!this.isLine};
+          },
+          movieClick(index){
+            this.c=index;
+          },
+          getFullName(){
+            return this.firstName+' '+this.lastName;
+          }
+        },
+        //计算属性 :顾名思义计算后相当于vue的一个属性
+        //computer：电脑
+        //注意：1.computed是属性调用，method是函数调用；2.computed有缓存功能，method没有缓存
+        computed:{
+          name(){
+            return this.firstName+' '+this.lastName;
+          },
+          totalPrice(){
+            var price=0;
+            // for(let i = 0 ;i<this.books.length;i++){
+            //   price+=this.books[i].price;
+            // }
+
+            //ES6方法1
+            // for(let book of this.books){
+            //   price+=book.price
+            // }
+            
+            //ES6方法2
+            for(let i in this.books){
+              price+=this.books[i].price;
+            }
+            return price;
+          }
         }
       })
     </script>
