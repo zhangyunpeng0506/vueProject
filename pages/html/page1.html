@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>页面1</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <div>{{message}}</div>
+      <div v-once>{{message}}</div>
+      <div v-pre>{{message}}</div>
+      <div v-html="url"></div>
+      <div v-text="message"></div>
+      <div>
+        <img src="https://cn.vuejs.org/images/logo.png"/>
+        <img v-bind:src="imgUrl">
+        <img :src="imgUrl"/>
+      </div>
+    </div>
+
+    <script src="../../js/vue/vue.js"></script>
+    <script>
+      const app=new Vue({
+        el:'#app',
+        data:{
+          message:'你好！',
+          url:'<a href="https://www.baidu.com">百度一下</a>',
+          imgUrl:'https://cn.vuejs.org/images/logo.png'
+        }
+      })
+    </script>
+  </body>
+</html>
