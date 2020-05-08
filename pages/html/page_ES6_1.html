@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>页面2</title>
+  </head>
+  <body>
+    <div>
+      <h2>ES6语法之let、const：</h2>
+      <button class="btn1">按钮1</button>
+      <button class="btn1">按钮2</button>
+      
+      <button class="btn2">ES5优化按钮1</button>
+      <button class="btn2">ES5优化按钮2</button>
+
+      <button class="btn3">ES6按钮1</button>
+      <button class="btn3">ES6按钮2</button>
+    </div>
+    <script>
+        /*
+        ES5之前因为if和for都没有块级作用域的概念，所以很多时候都必须借助于function的作用域来解决
+    应用外面变量的问题；
+        ES6中，加入了let，let有if和for的块级作用域
+
+        变量作用域：变量在什么范围内是可用的
+        块级作用域：外层作用域无法获取到内层作用域
+        */
+    
+        //var没有块级作用域
+        {
+          var name='zyp';
+          console.log(name);//zyp
+        }
+        console.log(name);//zyp
+    
+        //没有块级作用域将会引发的问题:if的块级
+        if(true){
+            var str='a';
+        }
+        console.log(str);
+        //没有块级作用域将会引发的问题:for的块级
+        for(var i=0;i<5;i++){
+            console.log(i);
+        }
+        //结果：0 1 2 3 4
+        //因为for循环内的函数被立即执行了
+
+        var btn1=document.getElementsByClassName('btn1');
+        var btn2=document.getElementsByClassName('btn2');
+        var btn3=document.getElementsByClassName('btn3');
+
+        for(var j=0;j<btn1.length;j++){
+          btn1[j].addEventListener('click',function(){
+            console.log(j);
+          })
+        }
+        //结果：无论点击哪个按钮打印的值都是2
+        //因为虽然在添加click事件时取的是当时i的值，但是循环未执行完，i的值还在改变。
+        
+        //拆解上面的ES5方法
+        // var j=0
+        // if(j<bn1.length){
+        //   var t=j;
+        //   btn1[t].addEventListener('click',function(){
+        //     console.log(t);
+        //   })
+        // }else{
+        //   j++;
+        // }
+
+        //ES5的方式解决，原理将k作为函数的参数，函数有自己的作用域
+        for(var k=0;k<btn2.length;k++){
+          (function(num){
+            btn2[num].addEventListener('click',function(){
+              console.log(num);
+            })
+          })(k);
+        }
+
+        //ES6
+        for(let l=0;l<btn3.length;l++){
+          btn3[l].addEventListener('click',function(){
+            console.log(l);
+          })
+        }
+
+        let b=111
+        {
+          b=2;
+          setTimeout(() => {
+            console.log(b);//3
+          }, 0);
+        }
+        {
+          b=3;
+          setTimeout(() => {
+            console.log(b);//3
+          }, 0);
+        }
+
+        {
+          let a='lalalala'
+          console.log('----',a);
+        }
+        // console.log(a); //报错
+
+        //const
+        //注意一：let 声明变量，const声明常量（不能修改）
+        //注意二：const定义标识符时，必须进行赋值
+        //注意三：这里常量的含义是指向的对象不能修改，但是可以改变对象的属性
+        const obj={
+          name:'zyp',
+          ary:[]
+        }
+        console.log(obj);
+        // obj={}  //报错
+        obj.name='abc';
+        obj.age=25;
+        obj.ary=['1']
+        console.log(obj);
+
+        const objstr='123';
+        console.log(objstr);
+        // objstr='234'; //报错
+      </script>
+  </body>
+</html>

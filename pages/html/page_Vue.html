@@ -44,8 +44,11 @@
 
       <div>{{getFullName()}}</div>
       <div>{{name}}</div>
+      <div>{{fullName}}</div>
 
       <div>总价：{{totalPrice}}</div>
+
+      <!--计算属性的getter和setter-->
     </div>
 
     <script src="../../common/vue/vue.js"></script>
@@ -94,6 +97,17 @@
         computed:{
           name(){
             return this.firstName+' '+this.lastName;
+          },
+          //完整的计算属性方法
+          fullName:{
+            set(newValue){
+              //计算属性一般是不用写set方法的
+              console.log('------------',newValue);
+              this.firstName=newValue;
+            },
+            get:function(){
+              return this.firstName+' '+this.lastName;
+            }
           },
           totalPrice(){
             var price=0;
