@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>页面3</title>
+  </head>
+  <body>
+    <h2>ES6语法之对象增强写法</h2>
+    <div>
+    </div>
+
+    <script>
+    //   const obj=new Object();   //js标准创建对象的方式要用new
+      const obj={}  //对象的字面量
+      obj.name='zyp';
+      obj.age=25;
+      for(let prop in obj){
+        console.log(prop);
+      }
+
+      //1.属性的增强写法
+      const name='zyp';
+      const age=25;
+
+      //ES5写法
+      const person={
+        name:name,
+        age:age
+      }
+      console.log(person);
+
+      //ES6写法
+      const person2={
+        name,
+        age
+      }
+      console.log(person2);
+
+      //2.函数的增强写法
+
+      //ES5写法
+      const person3={
+        run:function(){},
+        eat:function(){}
+      }
+
+      //ES6写法
+      const person4={
+        run(){},
+        eat(){}
+      }
+
+    </script>
+  </body>
+</html>
