@@ -20,8 +20,16 @@
       <div>{{message}}</div>
       <div v-once>{{message}}</div>
       <div v-pre>{{message}}</div>
+
+      <!--
+        v-html与v-text区别
+        v-html：如果要显示的内容包含HTML标签，会将标签进行解析
+        v-text：不会解析包含的HTML标签，将内容直接显示
+      -->
       <div v-html="url"></div>
+      <div v-text="url"></div>
       <div v-text="message"></div>
+
       <div>
         <img src="https://cn.vuejs.org/images/logo.png"/>
         <img v-bind:src="imgUrl">
@@ -31,11 +39,16 @@
       <div :class="active">{{message}}</div>
       <!--动态绑定class语法：boolean值为true则使用类，反之则不使用-->
       <div :class="{active:isActive,line:isLine}">{{message}}</div>
-      <div :class="getClasses()">{{message}}</div>
+
+      <!--注：除了交互事件在调用方法时可以省略方法后面的小括号，其他形式调用方法时都不能省略小括号-->
+      <div :class="getClasses()">{{message}}123</div>
+
       <!--数组内的样式会全部加载-->
       <div :class="['active','line']">{{message}}</div>
-      <div :style="{color:'blue'}">{{message}}</div>
+      <div :style="{color:'blue',fontSize:'30px'}">{{message}}</div>
+      <div :style="[{color:'blue'},{fontSize:'30px'}]">{{message}}</div>
       <div :style="{color:finalColor}">{{message}}</div>
+      <div :style="{color:getColor()}">{{message}}</div>
       <div :style="[baseStyle,baseStyle1]">{{message}}</div>
       <button @click="btnClick">变色</button>
       <ul>
@@ -78,7 +91,10 @@
         },
         methods:{
           getClasses:function(){
-            return {active:!this.isActive,line:!this.isLine};
+            return {active:this.isActive,line:!this.isLine};
+          },
+          getColor(){
+            return 'orange';
           },
           getFullName(){
             return this.firstName+' '+this.lastName;

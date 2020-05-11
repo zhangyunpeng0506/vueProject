@@ -13,7 +13,7 @@
       <br/>
       <button @click="btn2Click">按钮3(事件调用方法有参数)</button>
       <button @click="btn2Click()">按钮4(事件调用方法有参数)</button>
-      <button @click="btn2Click(123)">按钮5(事件调用方法有参数)</button>
+      <button @click="btn2Click(123,234)">按钮5(事件调用方法有参数)</button>
       <br/>
       <button @click="btn3Click(123,$event)">按钮6(需要event和其他参数)</button>
       <h4>{{title2}}</h4>
@@ -46,11 +46,12 @@
             console.log('无参数:'+'btn1Click');
             console.log('无参数:',event);
           },
-          /*2.在定义事件时，写方法时省略了小括号，但是方法本身是需要一个参数的，这个时候Vue会默认将浏览器生成的event事件对象
-            作为参数传递给方法
+          /*2.在定义事件时，写方法时省略了小括号，但是方法本身是需要一个或多个参数的，
+            这个时候Vue会默认将浏览器生成的event事件对象作为第一个参数传递给方法
           */
-          btn2Click(val){
+          btn2Click(val,val2){
             console.log('有参数:',val);
+            console.log('有参数:',val2);
             console.log('有参数:',event);
           },
           /*3.方法定义时，需要event对象，同时需要其他参数
