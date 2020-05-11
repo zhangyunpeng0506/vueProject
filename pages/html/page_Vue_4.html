@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Vue页面4</title>
+  </head>
+  <head>
+    <div id="app">
+      <h2>v-for学习</h2>
+      <h4>key属性：</h4>
+      <div><strong>官方推荐在使用v-for时，给对应的元素或组件添加上一个key属性<br/>
+        目的是为了更好地复用(
+          譬如插入节点时，diff算法默认执行时是将原来位置的值更新为要插入的值，下一个值更新为这个位置的值，以此类推，效率很低
+          因此我们需要使用key值来给每一个节点做一个唯一标识，diff算法就可以正确识别此节点，找到正确的位置插入新的节点
+          因此，key的作用是为了高效的更新虚拟DOM)</strong></div>
+      <!--1.遍历数组-->
+      <ul>
+        <li v-for="(name,index) in names" :key="name">{{index+1}}.{{name}}</li>
+      </ul>
+      <ul>
+        <li v-for="(name,index) of names">{{index+1}}.{{name}}</li>
+      </ul>
+
+      <!--2.遍历对象-->
+      <!--
+        遍历对象过程中，如果只是获取一个值，那么获取到的是value(value相对来说更重要，将重要的放在前面)
+      -->
+      <ul>
+        <li v-for="value in info">{{value}}</li>
+      </ul>
+      <ul>
+        <li v-for="(value,key,index) in info">{{index+1}}.{{key}}:{{value}}</li>
+      </ul>
+      <ul>
+        <li v-for="(value,key,index) of info">{{index+1}}.{{key}}:{{value}}</li>
+      </ul>
+      <!---->
+      <ul>
+        <li v-for="(letter,index) in letters">{{letter}}</li>
+      </ul>
+      
+
+      <div>
+        <div>splice方法验证</div>
+        <div>
+          <input type="text" id="addContent" placeholder="新增内容">
+          <input type="number" id="addIndex" placeholder="新增位置">
+          <button @click="addItem">新增</button>
+        </div>
+        <div>
+          <input type="number" id="delCount" placeholder="删除个数">
+          <input type="number" id="delIndex" placeholder="删除位置">
+          <button @click="delItem">删除</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../common/vue/vue.js"></script>
+    <script>
+      const app=new Vue({
+        el:'#app',
+        data:{
+          names:['zyp','fj'],
+          info:{
+            name:'zyp',
+            age:25,
+            heigt:'177'
+          },
+          letters:['a','b','c','d','e']
+        },
+        methods:{
+          addItem(){
+            let index=document.getElementById('addIndex').value.trim();
+            let content=document.getElementById('addContent').value.trim();
+            if(index>this.letters.length){
+              alert('add error');
+            }else{
+              this.letters.splice(index,0,content);
+            }
+          },
+          delItem(){
+            let count=document.getElementById('delCount').value.trim();
+            let index=document.getElementById('delIndex').value.trim();
+            if(index>this.letters.length){
+              alert('del error');
+            }else{
+              this.letters.splice(index,count);
+            }
+          }
+        }
+      })
+
+      //splice（index,howmany,item1,item2,item3,...,itemX） 方法：
+      //index:必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置（最后一位为0，倒数第二位为-1以此类推）
+      //howmany:必需。要删除的项目数量。如果设置为0，则不会删除项目
+      //item1,item2,item3,...,itemX:可选，向数组添加新的项目
+    </script>
+  </head>
+</html>
