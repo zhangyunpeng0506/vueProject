@@ -4,6 +4,55 @@
     <title>原型对象、原型链</title>
   </head>
   <body>
-    
+    <div>
+      <img src="../../imgs/proto.jpg">
+    </div>
+
+    <div>
+      <ul>
+        <li>函数才有prototype属性，对象没有这个属性</li>
+        <li>但是函数有__proto__这个属性，因为函数也属于对象，只要是对象就有__proto__属性，只不过函数的__proto__属性是Function.prototype</li>
+        <li>实例是通过new一个构造函数生成</li>
+        <li>原型对象也是对象，也有__proto__,他的__proto__还是原型对象</li>
+        <li>构造函数中定义的方法，实例化后并不一样，而原型对象prototype中定义的方法相等（指向同一地址）</li>
+        <li>添加了原型方法后，实例对象person1和构造函数Person中并没有直观体现，反而在person1.__proto__和Person.prototype中显示了出来</li>
+        <li>由此得出结论：JS中统一构造函数的实例对象要添加共同的属性和方法，需要使用prototype这一属性，也就是原型对象来实现</li>
+        <li>实例对象的__proto__和构造函数的prototype相等（指向同一地址），完全一样</li>
+        <li>构造函数的原型对象的构造器（constructor）指向该构造函数</li>
+        <li>原型链就是由原型组合成的一个链条，对象的__proto__是原型对象，原型对象的本质也是对象，所以原型对象也有__proto__，这样一直往上找__proto__</li>
+        <li>原型对象的作用：用来解决构造函数在创建新实例时，防止重复执行所导致的性能降低；每创建一次实例，构造函数就会执行一次（包括里面的方法），占用内存</li>
+        <li>注意事项：原型属性和方法统一定义时，需要定义构造器的constructor</li>
+      </ul>
+    </div>
+
+    <script>
+      function Person(){
+        this.name='zyp';
+        this.eat=function(){
+          alert('吃饭');
+        }
+      }
+
+      // 方法一：
+      // Person.prototype.play=function(){
+      //   alert('玩');
+      // }
+
+      // 方法二：
+      Person.prototype={
+        constructor:Person, //注意
+        play:function(){alert('玩')}
+      }
+
+      const person1=new Person();
+      const person2=new Person();
+      console.log('-',person1.eat===person2.eat); //false
+      console.log('--',person1.__proto__.play===person2.__proto__.play); //true
+      console.log('---',person1.__proto__===person2.__proto__); //true
+      console.log('----',person1.constructor===Person); //true
+      console.log('-----',person1.__proto__.constructor===Person);  //true
+      console.log('------',person1.__proto__===Person.prototype); //true
+      console.log('-------',Person.prototype.constructor===Person)  //true
+    </script>
   </body>
 </html>
