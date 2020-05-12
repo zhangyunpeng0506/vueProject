@@ -23,13 +23,17 @@
             <td>{{index+1}}</td>
             <td>《{{book.name}}》</td>
             <td>{{book.date}}</td>
-            <td>￥{{book.price*book.count}}</td>
-            <td><button @click="btnDecClick(index)">-</button>{{book.count}}<button @click="btnIncClick(index)">+</button></td>
+            <td>{{book.price*book.count | showPrice}}</td>
+            <td>
+              <button :disabled="book.count<=1" @click="btnDecClick(index)">-</button>
+              {{book.count}}
+              <button @click="btnIncClick(index)">+</button>
+            </td>
             <td><button @click="btnRemove(index)">移除</button></td>
             </tr>
           </tbody>
         </table>
-        <div>总价：{{toltalPrice}}</div>
+        <div>总价：{{toltalPrice | showPrice}}</div>
       </div>
       <div v-else>购物车为空</div>
     </div>
@@ -49,13 +53,10 @@
         },
         methods:{
           btnDecClick(index){
-            if(this.books[index].count===0){
-              return
-            }
-            this.books[index].count-=1;
+            this.books[index].count--;
           },
           btnIncClick(index){
-            this.books[index].count+=1;
+            this.books[index].count++;
           },
           btnRemove(index){
             this.books.splice(index,1);
@@ -63,6 +64,11 @@
               this.isShow=false;
             }
           }
+        },
+        filters:{//过滤器，一般是个函数
+          showPrice(price){
+            return '￥'+price.toFixed(2);
+          },
         },
         computed:{
           toltalPrice(){
