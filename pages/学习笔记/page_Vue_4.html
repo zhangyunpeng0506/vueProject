@@ -38,7 +38,7 @@
       <ul>
         <li v-for="(letter,index) in letters">{{letter}}</li>
       </ul>
-      
+      <button @click="btnClick">数组操作</button>
 
       <div>
         <div>splice方法验证</div>
@@ -86,14 +86,33 @@
             }else{
               this.letters.splice(index,count);
             }
-          }
+          },
+
+          btnClick(){
+            //可以响应式改变数组的方法
+            //1.push() unshift()都可以一次添加多个元素
+
+            this.letters.splice(1,2,'m','n','l'); //相当于先删除后添加
+
+            //reverse()反转数组
+
+            //注意：通过索引修改数组中的元素，不是响应式的
+            //set(要修改的对象，索引值，修改后的值)
+            Vue.set(this.letters,0,'hahaha');
+          },
         }
       })
+      /*
+        splice（index,howmany,item1,item2,item3,...,itemX） 方法：
+        index:必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置（最后一位为0，倒数第二位为-1以此类推）
+        howmany:要删除的项目数量。如果设置为0，则不会删除项目，如果不传，那么index之后所有元素删除
+        item1,item2,item3,...,itemX:可选，向数组添加新的项目
+      */
+    
+      //可变参数
+      function sum(...num){//可变参数，num是一个数组
 
-      //splice（index,howmany,item1,item2,item3,...,itemX） 方法：
-      //index:必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置（最后一位为0，倒数第二位为-1以此类推）
-      //howmany:必需。要删除的项目数量。如果设置为0，则不会删除项目
-      //item1,item2,item3,...,itemX:可选，向数组添加新的项目
+      }
     </script>
   </head>
 </html>
