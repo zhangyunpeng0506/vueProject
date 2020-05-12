@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>浏览器渲染原理与过程</title>
+  </head>
+  <body>
+    <div>
+      <p>关键渲染路径：浏览器从最初接收请求来的HTML、CSS、JavaScript等资源，然后解析、构建树、渲染布局、绘制，最后呈现给用户能看到的界面的这整个过程</p>
+      <p>浏览器渲染步骤：</p>
+      <ul>
+        <li>浏览器将获取的HTML文档解析成DOM树</li>
+        <li>处理CSS标记，构成层叠样式表模型CSSOM（CSS Object Model）</li>
+        <li>将DOM和CSSOM合并为渲染树（rendering tree）。过程：浏览器会先从DOM树的根节点开始遍历每个<span style="color: red;">可见的</span>节点，然后对每个可见的节点找到对应的CSS样式</li>
+        <li>渲染树的每个元素包含的内容都是计算过的，称之为布局（layout）。浏览器使用一种流式处理的方法，只需要一次绘制操作就可以布局所有元素</li>
+        <li>将渲染树的各个节点绘制到屏幕上，这一步称之为绘制（painting）</li>
+      </ul>
+      <p>注意事项：</p>
+      <ul>
+        <li>DOM树构建过程中可能被CSS和JS的加载而执行阻塞</li>
+        <li>display:none的元素也会在DOM树中</li>
+        <li>注释也会在DOM树中</li>
+        <li>script标签也会在DOM树中</li>
+        <li>CSS解析可以与DOM解析同时进行</li>
+        <li>render tree和DOM tree不完全对应</li>
+        <li>display:none的元素不在render tree中</li>
+        <li>visiblity:hidden的元素在render tree中</li>
+        <li>脱离文档流脱离的是render tree</li>
+      </ul>
+      <p>渲染阻塞：JS阻塞页面（阻塞DOM树和CSSOM树构建）、CSS阻塞渲染</p>
+      <div>
+        <div>回流(reflow)：页面发生布局变化，页面需要倒回去重新渲染，这个回退的过程叫回流</div>
+        <div>重绘(repaint)：颜色背景色等不影响布局的属性变化，需要重新</div>
+      </div>
+    </div>
+    <script>
+      
+    </script>
+  </body>
+</html>
