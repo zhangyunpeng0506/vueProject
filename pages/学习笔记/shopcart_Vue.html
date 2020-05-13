@@ -6,7 +6,7 @@
   </head>
   <body>
     <div id="app">
-      <div v-if="isShow">
+      <div v-if="books.length>0">
         <table>
           <thead>
             <tr>
@@ -49,7 +49,6 @@
             {name:'计算机组成原理',date:'2020-01-01',count:1,price:98},
             {name:'JavaScript高级语言',date:'2020-01-01',count:1,price:126},
           ],
-          isShow:true,
         },
         methods:{
           btnDecClick(index){
@@ -60,9 +59,6 @@
           },
           btnRemove(index){
             this.books.splice(index,1);
-            if(this.books.length===0){
-              this.isShow=false;
-            }
           }
         },
         filters:{//过滤器，一般是个函数
@@ -72,11 +68,16 @@
         },
         computed:{
           toltalPrice(){
-            var result=0;
-            for(let book of this.books){
-              result+=book.price*book.count;
-            }
-            return result
+            // var result=0;
+            // for(let book of this.books){
+            //   result+=book.price*book.count;
+            // }
+            // return result
+
+            //高阶函数reduce()
+            return this.books.reduce(function(prev,book){
+              return prev+book.price*book.count;
+            },0)
           }
         },
       })

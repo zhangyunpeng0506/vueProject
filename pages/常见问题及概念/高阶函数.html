@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>高阶函数</title>
+  </head>
+  <body>
+    <div>
+      <h3>定义：一个函数可以接受一个函数作为参数，这种函数就称之为高阶函数</h3>
+    </div>
+
+    <script>
+      const nums=[12,456,23,776,214,21,7,32,9876,11];
+      
+      //编程范式：命令式编程、声明式编程
+      //js高阶函数(需要的参数是一个函数的的函数)：filter/map/reduce
+
+      /*1.filter中的回调函数有一个要求，必须返回一个boolean值
+       true：函数内部会自动将这次回调的n加入到新的数组；
+       false：函数会过滤掉这次的n
+      */
+
+      let filterNums=nums.filter(function(n){
+        return n<100;
+      })
+      console.log(filterNums);
+
+      /*2.map
+        对数组中每一个元素进行操作
+      */
+      let mapNums=filterNums.map(function(n){
+        return n*100;
+      })
+      console.log(mapNums);
+
+      /*3.array.reduce(function(total,currentValue,currentIndex,arr){},initialValue);
+        对数组内容进行汇总
+        函数参数：total 必需，初始值，或计算结束后的返回值
+                  currentValue  必需，当前元素
+                  currentIndex  可选，当前元素的索引
+                  arr 可选，当前元素所属的数组对象
+        initialValue  可选，传递给函数的初始值
+      */
+       let total=mapNums.reduce(function(t,c){
+         return t+c;
+       })
+       console.log(total);
+    </script>
+  </body>
+</html>
