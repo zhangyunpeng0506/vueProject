@@ -46,7 +46,7 @@
 
       const person1=new Person();
       const person2=new Person();
-      console.log('-',person1.eat===person2.eat); //false
+      console.log('-',person1.eat===person2.eat); //false   指向的地址空间不同
       console.log('--',person1.__proto__.play===person2.__proto__.play); //true
       console.log('---',person1.__proto__===person2.__proto__); //true
       console.log('----',person1.constructor===Person); //true
