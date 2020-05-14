@@ -5,16 +5,40 @@
     <title>组件化开发</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!--3.使用组件-->
+      <my-cpn></my-cpn>
+      <my-cpn></my-cpn>
+      <my-cpn></my-cpn>
+      <my-cpn2></my-cpn2>
+    </div>
 
     <script src="../../common/vue/vue.js"></script>
     <script>
+
+      //1.创建组件
+      //Vue.extend创建一个组件构造器
+      const cpnC=Vue.extend({//ES6语法``中写字符串
+        template:`
+          <div>
+            <h2>我是组件标题</h2>
+            <p>我是组件内容</p>
+          <div>
+        `
+      })
+
+      //2.注册组件(全局组件，意味着可以在多个Vue的实例下面使用)
+      Vue.component('my-cpn',cpnC);
+
       const app=new Vue({
         el:'#app',
         data:{},
         methods:{},
         computed:{},
-        filters:{}
+        filters:{},
+        components:{    //局部组件
+          myCpn2:cpnC
+        }
       })
     </script>
   </body>
