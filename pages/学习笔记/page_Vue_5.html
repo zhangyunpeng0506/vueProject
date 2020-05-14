@@ -6,14 +6,85 @@
   </head>
   <body>
     <div id="app">
-      <h2>v-model双向绑定：</h2>
+      <h2>v-model双向绑定（实现表单元素与数据的双向绑定）</h2>
+
+      <input type="text" v-model='message'>
+      <div>{{message}}</div>
+
+      <!--双向绑定原理：相当于:value和@input两个指令的结合-->
+      <input type="text" :value="message" @input="valueChange">
+      <input type="text" :value="message" @input="message=$event.target.value">
+
+      <!--radio类型-->
+      <!--如果v-model绑定的是同一个值，那么name可以省略-->
+      <div>
+        <label for="male">
+          <input type="radio" id="male" value="男" v-model="sex">男
+        </label>
+        <label for="female">
+          <input type="radio" id="female" value="女" v-model="sex">女
+        </label>
+        <div>{{sex}}</div>
+      </div>
+
+      <!--checkbox-->
+      <div>
+        <label for="agree">
+          <input type="checkbox" id="agree" v-model="isAgree">同意协议
+        </label>
+        <button :disabled="!isAgree">下一步</button>
+        <div>{{isAgree}}</div>
+        <label>
+          <input type="checkbox" value="篮球" v-model="hobbies">篮球
+        </label>
+        <label>
+          <input type="checkbox" value="足球" v-model="hobbies">足球
+        </label>
+      </div>
+
+      <!--select-->
+      <div>
+        <select v-model="fruit">
+          <option value="苹果">苹果</option>
+          <option value="香蕉">香蕉</option>
+          <option value="梨">梨</option>
+        </select>
+        <span>{{fruit}}</span>
+        <br/>
+        <select v-model="fruits" multiple>
+          <option value="苹果">苹果</option>
+          <option value="香蕉">香蕉</option>
+          <option value="梨">梨</option>
+        </select>
+        <span>{{fruits}}</span>
+      </div>
+
+      <!--修饰符-->
+      <!--1.lazy当输入框失去焦点或者点击回车键数据才双向绑定-->
+      <input type="text" v-model.lazy.trim="message">
+      <h4>{{message}}</h4>
+      <input type="number" v-model.number="number">
+      <h4>{{number}}--{{typeof number}}</h4>
     </div>
 
     <script src="../../common/vue/vue.js"></script>
     <script>
       const app=new Vue({
         el:'#app',
-        data:{},
+        data:{
+          message:'你好呀',
+          sex:'男',
+          isAgree:false,  //单选
+          hobbies:['足球'],  //多选
+          fruit:'',
+          fruits:[],
+          number:0
+        },
+        methods:{
+          valueChange(){
+            this.message=event.target.value;
+          }
+        }
       })
     </script>
   </body>
