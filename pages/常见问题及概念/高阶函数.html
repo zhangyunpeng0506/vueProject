@@ -37,7 +37,7 @@
       //d.筛选出数组的素数
       const arr4=[21,43,76,21,42,85,1,0,213,4,2,6,768,23,765];
       console.log(arr4.filter(function(x){
-        if(x<3){
+        if(x<2){
           return false;
         }
         for(let i=2;i<x;i++){
@@ -100,7 +100,6 @@
 
        /*5.Array的一些高阶函数*/
        /*5.1 every()判断所有元素是否满足测试条件*/
-       
        //h
        console.log(arr7.every(function(x){
          return x.length>0;
