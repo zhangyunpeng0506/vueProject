@@ -13,25 +13,45 @@
       const nums=[12,456,23,776,214,21,7,32,9876,11];
       
       //编程范式：命令式编程、声明式编程
-      //js高阶函数(需要的参数是一个函数的的函数)：filter/map/reduce
+      //js高阶函数:需要的参数是一个函数的的函数
 
-      /*1.filter中的回调函数有一个要求，必须返回一个boolean值
-       true：函数内部会自动将这次回调的n加入到新的数组；
-       false：函数会过滤掉这次的n
+      /*1.filter()
+        定义：用于把array的某些元素过滤掉，然后返回剩下的元素
+        回调函数有一个要求，必须返回一个boolean值
+        true：函数内部会自动将这次回调的n加入到新的数组；
+        false：函数会过滤掉这次的n
       */
 
-      let filterNums=nums.filter(function(n){
-        return n<100;
-      })
-      console.log(filterNums);
+      //a.去掉奇数只保留偶数
+      const arr=[1, 2, 4, 5, 6, 9, 10, 15];
+      console.log(arr.filter(function(x){return x%2!==0}));
 
-      /*2.map
-        对数组中每一个元素进行操作
+      //b.去掉空字符串
+      const arr2=['A', '', 'B', null, undefined, 'C', '  '];
+      console.log(arr2.filter(function(x){return x&&x.length>0}));
+
+      //c.去掉重复元素
+      const arr3=['A','A','C','v','c','b','c'];
+      console.log(arr3.filter(function(x,index,arr){return arr.indexOf(x)===index}));
+
+      //d.筛选出数组的素数
+      const arr4=[21,43,76,21,42,85,1,0,213,4,2,6,768,23,765];
+      console.log(arr4.filter(function(x){
+        if(x<3){
+          return false;
+        }
+        for(let i=2;i<x;i++){
+          if(x%i===0){
+            return false;
+          }
+        }
+        return true;
+      }))
+
+      /*2.map()
+          定义：返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值（map不会改变原始数组）
+          语法：array.map(function(currentValue,currentIndex,arr),thisValue);
       */
-      let mapNums=filterNums.map(function(n){
-        return n*100;
-      })
-      console.log(mapNums);
 
       /*3.array.reduce(function(total,currentValue,currentIndex,arr){},initialValue);
         对数组内容进行汇总
@@ -41,10 +61,72 @@
                   arr 可选，当前元素所属的数组对象
         initialValue  可选，传递给函数的初始值
       */
-       let total=mapNums.reduce(function(t,c){
-         return t+c;
-       })
-       console.log(total);
+
+       //e.将首字母大写，其他小写
+       const arr5=['adam', 'LISA', 'barT'];
+       console.log(arr5.map(function(x){
+        return x.split('').reduce(function(prev,current,currentIndex){
+               if(currentIndex===1){
+                   return prev.toUpperCase()+current.toLowerCase();
+               }else{
+                   return prev+current.toLowerCase();
+               }
+           })
+       }))
+
+       /*4.sort()
+         sort 默认排序方式是根据ASCII排序，对数字排序时先将数字转换为string类型
+         注：sort方法会直接对数组进行修改。
+             如果是数字数组可以返回x-y或者y-x;但是如果是字符串比较则不行。
+       */
+
+       //f.将数组正序排序
+       const arr6=[10,20,1,2];
+       console.log(arr6.sort(function(x,y){ //返回负数不排序，返回正数排序
+         if(x>y){ return 1; }
+         if(y>x){ return -1; }
+         return 0
+       }))
+
+       //g.忽略大小比较字符串，并倒序排序
+       const arr7= ['Google', 'apple', 'Microsoft'];
+       console.log(arr7.sort(function(x,y){
+         let X=x.toUpperCase();
+         let Y=y.toUpperCase();
+         if(X>Y){ return -1; }
+         if(X<Y){ return 1; }
+         return 0;
+       }))
+
+       /*5.Array的一些高阶函数*/
+       /*5.1 every()判断所有元素是否满足测试条件*/
+       
+       //h
+       console.log(arr7.every(function(x){
+         return x.length>0;
+       }))  //true 因为每个元素的长度都大于0
+
+       //i.
+       console.log(arr7.every(function(x){
+         return x.toLowerCase()===x;
+       }))  //false 因为不是每个元素都是全部大写的
+
+       /*5.2 find()查找符合条件的第一个元素，找到了就返回这个元素，否则返回undefined*/
+       //j.
+       console.log(arr7.find(function(x){
+         return x.indexOf('M')>-1
+       }))
+
+       /*5.3 findIndex()查找符合条件的第一个元素，找到了返回这个元素的索引，否则返回-1*/
+       //k.
+       console.log(arr7.find(function(x){
+         return x.toLowerCase()===x;
+       }))
+
+       /*5.4 forEach()把每个元素作用于传入的函数，但不会返回新的数组，常用于遍历数组，因此传入的函数不需要返回值*/
+       //l.
+       arr7.forEach(console.log)
+
     </script>
   </body>
 </html>
