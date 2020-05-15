@@ -8,10 +8,26 @@
     <div id="app">
       <!--3.使用组件-->
       <my-cpn></my-cpn>
-      <my-cpn></my-cpn>
-      <my-cpn></my-cpn>
       <my-cpn2></my-cpn2>
+      <my-cpn3></my-cpn3>
+      <my-cpn4></my-cpn4>
+      <my-cpn5></my-cpn5>
+      <my-cpn6></my-cpn6>
     </div>
+
+    <script type="text/x-template" id="cpn5">
+      <div>
+        <h2>我是组件标题5</h2>
+        <p>我是组件内容5</p>
+      <div>
+    </script>
+
+    <template id="cpn6">
+      <div>
+        <h2>我是组件标题6</h2>
+        <p>我是组件内容6</p>
+      <div>
+    </template>
 
     <script src="../../common/vue/vue.js"></script>
     <script>
@@ -30,6 +46,22 @@
       //2.注册组件(全局组件，意味着可以在多个Vue的实例下面使用)
       Vue.component('my-cpn',cpnC);
 
+      
+      //全组组件语法糖写法
+      Vue.component('my-cpn3',{
+        template:`
+        <div>
+          <h2>我是组件标题2</h2>
+          <p>我是组件内容2</p>
+        <div>
+        `
+      })
+
+      //抽离template代码
+      Vue.component('my-cpn5',{
+        template:'#cpn5'
+      })
+
       const app=new Vue({
         el:'#app',
         data:{},
@@ -37,7 +69,16 @@
         computed:{},
         filters:{},
         components:{    //局部组件
-          myCpn2:cpnC
+          myCpn2:cpnC,
+          myCpn4:{  //局部组件语法糖写法
+            template:`
+            <div>
+              <h2>我是组件标题4</h2>
+              <p>我是组件内容4</p>
+            <div>
+            `
+          },
+          myCpn6:{template:'#cpn6'} //抽离template
         }
       })
     </script>
