@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>组件学习</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <counter></counter>
+      <counter></counter>
+    </div>
+
+    <template id='cpn'>
+      <div>
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+      </div>
+    </template>
+
+    <template id="countCpn">
+      <div>
+        <h2>当前计数为：{{counter}}</h2>
+        <button @click="increment">+</button>
+        <button @click="decrement">-</button>
+      </div>
+    </template>
+
+    <script src="../../common/vue/vue.js"></script>
+    <script>
+      
+      Vue.component('counter',{
+        template:'#countCpn',
+        data(){ //写成函数防止组件在复用时，数据之间相互影响
+          return{
+            counter:0
+          }
+        },
+        methods:{
+          increment(){
+            this.counter++;
+          },
+          decrement(){
+            this.counter--;
+          }
+        }
+      })
+
+      const app=new Vue({
+        el:'#app',
+        components:{
+          cpn:{
+            template:'#cpn',
+            data(){ //组件内为什么必须是函数
+              return{
+                title:'标题',
+                content:'内容'
+              }
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
