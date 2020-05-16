@@ -12,7 +12,11 @@
         :ctitle="title" 
         :ccontent="content" 
         :cfruitlist="fruitList"
-        @itemclick="itemClick"></cpn-child>
+        @itemclick="itemClick"
+        @cinputchange="inputchange"
+        @cinputchange2="inputchange2"></cpn-child>
+      <p>app的title值：{{title}}</p>
+      <p>app的content值：{{content}}</p>
     </div>
 
     <template id="childTemplate">
@@ -24,7 +28,22 @@
             <li v-for="(fruit,index) in cfruitlist" @click="liClick(fruit)">{{index+1}}.{{fruit}}</li>
           </ul>
         </p>
-      </div>
+        <!--组件双向绑定：
+          方法一：
+          1.官方不建议直接props内的值(cv)进行双向绑定
+          2.做的时候在组件data内部定义一个值（dv）等于cv，以此作为媒介，
+            用data内的值进行双向绑定，当值变化时，将利用组件通信改变父组件内传值给cv的变量(v)的值来达到改变cv值的目的，
+            从而实现组件内输入框值的双向绑定
+          方法二：
+          原理是一样的，利用watch属性，但是可以直接使用v-model,而不用将其拆分
+        -->
+        <input type="text" :value="dtitle" @input="cInputChange"/>
+        <p>props-title：{{ctitle}}</p>
+        <p>data-title：{{dtitle}}</p>
+        <input type="text" v-model="dcontent"/>
+        <p>props-content：{{ccontent}}</p>
+        <p>data-content：{{dcontent}}</p>
+        </div>
     </template>
   
     <!-- <template id="parentTemplate">
@@ -86,6 +105,12 @@
       methods:{
         itemClick(item){
           alert('子组件'+item+'被点击')
+        },
+        inputchange(value){
+          this.title=value;
+        },
+        inputchange2(value){
+          this.content=value;
         }
       },
       components:{//vue在使用cpn2组件时，cpn2已经被编译好了，不存在cpn1了，而cpn1由于未在Vue中注册，因此不能直接使用
@@ -114,11 +139,23 @@
             }
           },
           data(){
-            return{}
+            return{
+              dtitle:this.ctitle,
+              dcontent:this.ccontent
+            }
           },
           methods:{
             liClick(item){  //子传父通过自定义事件
               this.$emit('itemclick',item);
+            },
+            cInputChange(){
+              this.dtitle=event.target.value;
+              this.$emit('cinputchange',this.dtitle);
+            }
+          },
+          watch:{//监听属性的改变，哪个属性改变，就直接写哪个属性
+            dcontent(newValue){
+              this.$emit('cinputchange2',newValue);
             }
           }
         }
