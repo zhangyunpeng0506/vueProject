@@ -24,11 +24,11 @@
 
       //a.去掉奇数只保留偶数
       const arr=[1, 2, 4, 5, 6, 9, 10, 15];
-      console.log(arr.filter(function(x){return x%2!==0}));
+      console.log(arr.filter(function(x){return x%2===0}));
 
       //b.去掉空字符串
       const arr2=['A', '', 'B', null, undefined, 'C', '  '];
-      console.log(arr2.filter(function(x){return x&&x.length>0}));
+      console.log(arr2.filter(function(x){return x&&x.trim().length>0}));
 
       //c.去掉重复元素
       const arr3=['A','A','C','v','c','b','c'];
@@ -66,12 +66,12 @@
        const arr5=['adam', 'LISA', 'barT'];
        console.log(arr5.map(function(x){
         return x.split('').reduce(function(prev,current,currentIndex){
-               if(currentIndex===1){
-                   return prev.toUpperCase()+current.toLowerCase();
-               }else{
-                   return prev+current.toLowerCase();
-               }
-           })
+          if(currentIndex===1){
+            return prev.toUpperCase()+current.toLowerCase();
+          }else{
+            return prev+current.toLowerCase();
+          }
+        })
        }))
 
        /*4.sort()
