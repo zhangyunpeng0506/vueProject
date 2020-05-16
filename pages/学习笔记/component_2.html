@@ -8,7 +8,11 @@
     <div id="app">
       <!-- <cpn2></cpn2> -->
       <!-- <parent-cpn></parent-cpn> -->
-      <cpn-child :ctitle="title" :ccontent="content" :cfruitlist="fruitList"></cpn-child>
+      <cpn-child 
+        :ctitle="title" 
+        :ccontent="content" 
+        :cfruitlist="fruitList"
+        @itemclick="itemClick"></cpn-child>
     </div>
 
     <template id="childTemplate">
@@ -17,7 +21,7 @@
         <p>
           <h4>{{ccontent}}</h4>
           <ul>
-            <li v-for="(fruit,index) in cfruitlist">{{index+1}}.{{fruit}}</li>
+            <li v-for="(fruit,index) in cfruitlist" @click="liClick(fruit)">{{index+1}}.{{fruit}}</li>
           </ul>
         </p>
       </div>
@@ -79,6 +83,11 @@
         content:'组件通信内容',
         fruitList:['苹果','香蕉','梨'],
       },
+      methods:{
+        itemClick(item){
+          alert('子组件'+item+'被点击')
+        }
+      },
       components:{//vue在使用cpn2组件时，cpn2已经被编译好了，不存在cpn1了，而cpn1由于未在Vue中注册，因此不能直接使用
         cpn2:cpnC2,
         cpnChild:{
@@ -89,21 +98,31 @@
               default:'',   //默认值
               type:String,   //类型
               required:true,  //是否必传，如果不传控制台会报提示
+              validator(value){ //自己添加验证函数
+                return value.length<10;  //标题长度小于5
+              }
             },
             ccontent:{
               default:'',
               type:String,
             },
             cfruitlist:{
-              default:[],
+              default(){  //类型是对象或者数组时，默认值必须是一个函数
+                return [];
+              },
               type:Array
             }
           },
           data(){
             return{}
+          },
+          methods:{
+            liClick(item){  //子传父通过自定义事件
+              this.$emit('itemclick',item);
+            }
           }
         }
-      }
+      },
     })
     </script>
   </body>
