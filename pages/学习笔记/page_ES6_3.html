@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ES6——解构赋值</title>
+  </head>
+  <body>
+    <div>
+      <p>解构赋值：</p>
+      <ul>
+        <li>左右两边结构必须一样</li>
+        <li>右边必须是个合法的数组或对象等</li>
+        <li>声明和赋值不能分开(必须在一句话里完成，即声明时就 必须赋值)</li>
+        <li>可以根据需要选择粒度</li>
+      </ul>
+    </div>
+
+    <script>
+      let arr=[1,2,3];
+      let [a,b,c]=arr;
+      console.log(a,b,c);
+
+      let obj={x:4,y:5,z:6};
+      let {x,y,z}=obj;  //注意：左边括号里要与右边的key值一样
+      console.log(x,y,z);
+      
+      //可以根据需要选择不同的粒度
+      let multiV=[[7,8],{m:143,n:12},0,'hello world'];
+      let [[n1,n2],{m,n},num,str]=multiV;
+      let [myArr,myObj,otherNum,otherStr]=multiV;
+      console.log(n1,n2,m,n,num,str);
+      console.log(myArr,myObj,otherNum,otherStr);
+    </script>
+  </body>
+</html>

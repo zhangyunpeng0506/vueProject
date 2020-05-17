@@ -2,67 +2,74 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>ES6页面2</title>
+    <title>ES6——函数</title>
   </head>
   <body>
-    <h2>ES6语法之对象增强写法</h2>
     <div>
+      <p>箭头函数：</p>
+      <ul>
+        <li>如果只有一个参数，()可以省</li>
+        <li>如果只有一个return，{}可以省</li>
+      </ul>
+      <p>参数展开：</p>
     </div>
 
     <script>
-    //   const obj=new Object();   //js标准创建对象的方式要用new
-      const obj={}  //对象的字面量
-      obj.name='zyp';
-      obj.age=25;
-      for(let key in obj){
-        // console.log(key);  //name age
-        console.log(key+':'+obj[key]);
+      /**************箭头函数**************/
+      let show=function(){
+        console.log('success');
       }
-      // for(let o of obj){
-      //   console.log(o); //报错
+      show();
+
+      let show2=()=>{
+        console.log('箭头函数：success');
+      }
+      show2();
+
+      //箭头函数传参
+      let show3=(a,b)=>{
+        console.log(a+b);
+      }
+      show3('箭头函数：','传参success');
+
+      //省略()和{}
+      let show4=a=>console.log(a*2);  
+      // let show4=function(a){
+      //   return console.log(a*2);
       // }
+      show4(2);
+      /************************************/
 
-      const ary=['a','b','c'];
-      ary.push('d');
-      for(let i in ary){
-        console.log(i); //0 1 2 3
+      /**************参数展开**************/
+      /*
+        1.收集剩余的参数，必须是最后一个
+        2.展开数组
+          展开后的效果，和直接把数组的内容写出来一样。
+        3.默认参数
+      */
+      
+      //收集剩余参数
+      function show5(a,b,...args){
+        console.log(a);
+        console.log(b);
+        console.log(args);
       }
-      for(let item of ary){
-        console.log(item);  //a b c d
+      show5(1,2,3,4,5,6);
+
+      //展开数组
+      let arr1=[1,2,3];
+      let arr2=[7,8,9];
+      let arr=[...arr1,...arr2];
+      console.log(arr);
+      /************************************/
+
+      /**************默认参数**************/
+      function show6(a,b=12,c=15){
+        console.log(a,b,c);
+        
       }
-
-      //1.属性的增强写法
-      const name='zyp';
-      const age=25;
-
-      //ES5写法
-      const person={
-        name:name,
-        age:age
-      }
-      console.log(person);
-
-      //ES6写法
-      const person2={
-        name,
-        age
-      }
-      console.log(person2);
-
-      //2.函数的增强写法
-
-      //ES5写法
-      const person3={
-        run:function(){},
-        eat:function(){}
-      }
-
-      //ES6写法
-      const person4={
-        run(){},
-        eat(){}
-      }
-
+      show6(10,20); //10,20,15
+      /************************************/
     </script>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ES6总览</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>ES6总览：</p>
+      <ul>
+        <li style="cursor: pointer;"
+          v-for="(item,index) in list" 
+          @click="liClick(index+1)">{{item}}</li>
+      </ul>
+    </div>
+
+    <script src="../../common/vue/vue.js"></script>
+    <script>
+      const app=new Vue({
+        el:'#app',
+        data:{
+          list:['变量','函数','结构赋值','数组','字符串','面向对象','Promise','generator','模块化'],
+        },
+        methods:{
+          liClick(index){
+            let rootPath=location.pathname.split('/').reduce((prev,current)=>{
+              if(current.indexOf('.html')>-1){
+                return prev+'/';
+              }else{
+                return prev+'/'+current;
+              }
+            });
+            
+            location.href=location.origin+rootPath+'page_ES6_'+index+'.html';
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

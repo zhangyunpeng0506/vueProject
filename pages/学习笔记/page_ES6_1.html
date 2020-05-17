@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>ES6页面1</title>
+    <title>ES6——变量</title>
   </head>
   <body>
     <div>
@@ -18,6 +18,11 @@
     </div>
     <script>
         /*
+        var都有哪些问题：
+        1.可以重复声明
+        2.无法限制修改(没有常量)
+        3.没有块级作用域
+
         ES5之前因为if和for都没有块级作用域的概念，所以很多时候都必须借助于function的作用域来解决
     应用外面变量的问题；
         ES6中，加入了let，let有if和for的块级作用域
@@ -105,6 +110,7 @@
         // console.log(a); //报错
 
         //const
+        //let和const都不能重复声明
         //注意一：let 声明变量，const声明常量（不能修改）
         //注意二：const定义标识符时，必须进行赋值
         //注意三：这里常量的含义是指向的对象不能修改，但是可以改变对象的属性
@@ -122,6 +128,12 @@
         const objstr='123';
         console.log(objstr);
         // objstr='234'; //报错
+
+        /*
+        总结：
+        let   不能重复声明，变量（可以修改），块级作用域
+        const 不能重复声明，常量（不能修改，且声明时必须赋值），块级作用域
+        */
     </script>
   </body>
 </html>
