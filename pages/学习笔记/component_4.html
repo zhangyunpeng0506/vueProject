@@ -3,18 +3,72 @@
   <meta charset="UTF-8">
   <title>父子组件的访问</title>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <cpn ref="mycpn"></cpn>
+      <button @click="btnClick">父组件按钮</button>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <p>我是子组件</p>
+        <button @click="btnChildClick">子组件按钮</button>
+        <ccpn></ccpn>
+      </div>
+    </template>
+
+    <template id="ccpn">
+      <div>
+        <p>我是子组件的子组件</p>
+        <button @click="btnChildcClick">子组件的子组件按钮</button>
+      </div>
+    </template>
 
     <script src="../../common/vue/vue.js"></script>
     <script>
       const app=new Vue({
         el:'#app',
         data:{},
-        methods:{},
+        methods:{
+          btnClick(){
+            //父访问子
+            //1.$children,不推荐(数组)
+            console.log(this.$children);
+            this.$children[0].showMessage();
+            //2.$refs(对象)
+            console.log(this.$refs.mycpn);
+            this.$refs.mycpn.showMessage();
+          }
+        },
         filters:{},
         watch:{},
         computed:{},
-        conponents:{},
+        components:{
+          cpn:{
+            template:'#cpn',
+            methods:{
+              showMessage(){
+                console.log('子组件showMessage');
+              },
+              btnChildClick(){
+                //访问父组件
+                console.log(this.$parent);
+                //访问根组件
+                console.log(this.$root);
+              },
+            },
+            components:{
+              ccpn:{
+                template:'#ccpn',
+                methods: {
+                  btnChildcClick() {
+                    console.log(this.$parent);
+                    console.log(this.$root)
+                  }
+                }
+              },
+            }
+          }
+        },
       })
     </script>
   </body>
