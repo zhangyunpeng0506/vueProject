@@ -5,44 +5,89 @@
     <title>ES6——Set、WeakSet、Map、WeakMap</title>
   </head>
   <body>
-    <p>Set</p>
+    <p>Set：类似于数组，但是内部的值都是唯一的</p>
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>属性：size</li>
+      <li>操作：add/delete/has/clear</li>
+      <li>遍历：keys/values/entries/forEach</li>
     </ul>
 
-    <p>WeakSet</p>
+    <p>WeakSet：成员只能是对象，不能是其他类型的值；WeakSet里的引用，不计入垃圾回收机制；不能遍历，没有size属性</p>
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>操作：add/delete/has</li>
     </ul>
 
-    <p>Map</p>
+    <p>Map：类似于对象，也是键值对形式，但是键名范围不局限在字符串</p>
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>属性：size</li>
+      <li>操作：set/get/add/has/delete/clear</li>
+      <li>遍历：keys/values/entries/forEach</li>
     </ul>
 
-    <p>WeakMap</p>
+    <p>WeakMap：类似于Map，只接受对象作为键名；WeakMap里面的引用，不计入垃圾回收机制</p>
     <ul>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>操作</li>
     </ul>
 
     <script>
-      //https://www.jianshu.com/p/7a8abf47f32c
+      const obj1={'a':1};
+      const obj2={'b':2};
+      const arr1=[1,2,3];
+      const arr2=[obj1,...arr1];
+      const arr3=[obj1,obj2];
 
       //Set
-      let set=new Set([1,2,2,3]);
-      console.log(set); //Set {1,2,3}
+      let set=new Set([2,...arr1,obj1,obj1,obj2]);
+      set.forEach(x=>{console.log(x);})
+      for(let k of set.keys()){
+        console.log(k);
+      }
+      for(let v of set.values()){
+        console.log(v);
+      }
+      for(let e of set.entries()){
+        console.log(e);
+      }
+      console.log(set);
+      console.log(set.has(obj1));
+      set.add('add');
+      console.log(set);
+      set.delete('add'); //参数为值，必需
+      console.log(set);
+      console.log(set.size);
+      // set.clear();
+      console.log(set);
       
       //WeakSet
+      let wkset=new WeakSet([obj1,obj1,obj2]);  //成员只能是对象
+      console.log(wkset);
+      
       //Map
+      let map=new Map();
+      map.set(obj1,arr1);
+      map.set(arr1,obj2);
+      map.forEach(x=>{
+        console.log(x);
+      })
+      for(let k of map.keys()){
+        console.log(k);
+      }
+      for(let v of map.values()){
+        console.log(v);
+      }
+      for(let m of map.entries()){
+        console.log(m);
+      }
+      console.log(map);
+      console.log(map.get(obj1));
+      map.delete(obj1); //参数为键名，必需
+      console.log(map);
+      console.log(map.has(obj1));
+      
       //WeakMap
+      let wkmap=new WeakMap();
+      wkmap.set(obj1,arr1);
+      console.log(wkmap);
 
       /*****************综合练习：数组去重*****************/
       const arr=[23,45,2,5,8,12,21,45,676,21,2,34,23];
