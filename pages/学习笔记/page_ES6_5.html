@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>ES6——Set、WeakSet、Map、WeakMap</title>
+  </head>
+  <body>
+    <p>Set</p>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <p>WeakSet</p>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <p>Map</p>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <p>WeakMap</p>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <script>
+      //https://www.jianshu.com/p/7a8abf47f32c
+
+      //Set
+      let set=new Set([1,2,2,3]);
+      console.log(set); //Set {1,2,3}
+      
+      //WeakSet
+      //Map
+      //WeakMap
+
+      /*****************综合练习：数组去重*****************/
+      const arr=[23,45,2,5,8,12,21,45,676,21,2,34,23];
+
+      //方法一：高阶函数
+      console.log(arr.filter(function(value,index,arry){
+        return arry.indexOf(value)===index;
+      }));
+      
+      //方法二：ES6
+      console.log(Array.from(new Set(arr)));
+      /**************************************************/
+    </script>
+  </body>
+</html>

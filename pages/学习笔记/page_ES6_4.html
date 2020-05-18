@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>ES6——数组</title>
+  </head>
+  <body>
+    <p>ES5及之前版本数组方法：</p>
+    <ul>
+      <li>toString() 把数组转换为字符串，并返回结果。 不改变原数组</li>
+      <li>valueOf() 返回数组对象的原始值。 不改变原数组</li>
+      <li>push() 向数组的末尾添加一个或多个元素，并返回长度。 改变原数组</li>
+      <li>unshift() 向数组的开头添加一个或多个元素，并返回长度。 改变原数组</li>
+      <li>pop() 删除并返回数组最后一个元素。 改变原数组</li>
+      <li>shift() 删除并返回数组第一个元素。 改变原数组</li>
+      <li>sort() 对数组元素排序。 改变原数组</li>
+      <li>reverse() 颠倒数组元素顺序。 改变原数组</li>
+      <li>splice() 删除并向数组添加新的元素。 改变原数组</li>
+      <li>concat() 连接两个或多个数组。 不改变原数组</li>
+      <li>join() 将数组元素用指定分隔符分隔放入字符串。 不改变原数组</li>
+      <li>slice(start,end) 从数组返回指定元素。 不改变原数组</li>
+    </ul>
+    <p>ES5新增数组：</p>
+    <ul>
+      <li>索引方法：indexOf()、lastIndexOf()</li>
+      <li>迭代方法：forEach()、map()、filter()、some()、every()</li>
+      <li>归并方法：reduce()、reduceRight()</li>
+      <li>数组方法：isArray()</li>
+    </ul>
+    </ul>
+    <p>ES6数组方法：</p>
+    <ul>
+      <li>Array.from(arraylike,fn) </li>
+      <li>Array.of()</li>
+      <li>copyWithin(target,start,end)</li>
+      <li>fill(value,start,end)</li>
+      <li>find()</li>
+      <li>findIndex()</li>
+      <li>includes()</li>
+      <li>entries()、keys()、values()</li>
+    </ul>
+  </body>
+
+  <script>
+    let arr=[1,2,3];
+    console.log(arr);
+    console.log(arr.toString());
+    console.log(arr.valueOf());
+    console.log(arr);
+    
+  </script>
+</html>
