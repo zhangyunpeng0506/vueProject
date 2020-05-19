@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>ES6——面向对象</title>
+  </head>
+  <body>
+    <div></div>
+
+    <script>
+      /**********ES5写法**********/
+      function User(name,psd){
+        this.name=name;
+        this.psd=psd;
+      }
+
+      User.prototype.ShowName=function(){
+        console.log(this.name);
+      }
+
+      User.prototype.ShowPsd=function(){
+        console.log(this.psd);
+      }
+
+      let user =new User('zyp','123456');
+      user.ShowName();
+      user.ShowPsd();
+
+      //继承
+      function VipUser(name,psd,level){
+        /*
+          1.call和apply可以用来重新定义函数的执行环境，即this的指向
+          2.call和apply是为了改变函数运行时的context，也就是函数内部this的指向
+        */
+        User.call(this,name,psd);
+        this.level=level;
+      }
+
+      VipUser.prototype=new User(); //因为存在原型链，因此User内的所有方法VipUser都可以使用了
+      // VipUser.prototype=new User().__proto__;  //错误写法，引用数据类型，prototype改变时会相互影响 new User().__proto__===User.prototype
+      // VipUser.prototype=User.prototype;  //错误写法，引用数据类型，prototype改变时会相互影响
+      VipUser.prototype.constructor=VipUser;
+      VipUser.prototype.ShowLev=function(){
+        console.log(this.level);
+      }
+
+      let vipUser=new VipUser('zyp+fj','666',999);
+      vipUser.ShowName();
+      vipUser.ShowPsd();
+      vipUser.ShowLev();
+      /***************************/
+
+      /**********ES6写法**********/
+      /*1.class关键字，构造器和类分开了
+        2.class里直接加方法
+        3.有利于继承
+      */
+      class Person{
+        constructor(name,psd){
+          this.name=name;
+          this.psd=psd;
+        }
+
+        ShowName(){
+          console.log(this.name);
+        };
+
+        ShowPsd(){
+          console.log(this.psd);
+        };
+      }
+
+      let person=new Person('fj','654321');
+      person.ShowName();
+      person.ShowPsd();
+
+      //继承
+      class VipPerson extends Person{
+        constructor(name,psd,level){
+          super(name,psd);  //超类(父类)，类似于ES5的call()那步
+          this.level=level;
+        }
+        ShowLev(){
+          console.log(this.level);
+        }
+      }
+
+      let vipPerson=new VipPerson('zyp-vip','~!@#$','99');
+      vipPerson.ShowName();
+      vipPerson.ShowPsd();
+      vipPerson.ShowLev();
+      /***************************/
+
+      /**********继承实例**********/
+      const arr1=[21,4,2,534,21,35];
+      const arr2=[1,3,6,867,21,98,0]
+      //1.找出数组中的最大和最小值
+      console.log(Math.max.apply(this,arr1));
+      console.log(Math.min.apply(this,arr1));
+      
+      //2.写一个连接两个数组的方法(不能使用js默认方法)
+      Array.prototype.push.apply(arr1,arr2)
+      console.log(arr1);
+      /***************************/
+    </script>
+  </body>
+</html>
