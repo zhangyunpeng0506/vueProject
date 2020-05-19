@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>ES6——字符串</title>
+  </head>
+  <body>
+    <div>
+      <h2>ES5及之前方法：</h2>
+      <p>检索字符串：</p>
+      <ul>
+        <li>indexOf(str,start)：返回字符串在文本中首次出现的位置。start：检索起始位置。（会将正则表达式当做字符串检索）</li>
+        <li>lastIndexOf(str,start)：返回字符串在文本中最后一次出现的位置。</li>
+        <li>search()：返回字符串在文本中首次出现的位置。（不能指定检索的起始位置，可以解析正则表达式）</li>
+      </ul>
+      <p>截取字符串：</p>
+      <ul>
+        <li>slice(start,end)：支持传入负数</li>
+        <li>substring(start,end)：不支持传入负数</li>
+        <li>substr(start,leng)：len：截取的字符长度，如果不传则截取从其实位置到结尾</li>
+      </ul>
+      <ul>
+        <li>replace()：用一个字符串替换指定字符串。默认只匹配第一个</li>
+        <li>toUpperCase()：转化成大写</li>
+        <li>toLowerCase()：转化成小写</li>
+        <li>concat(str1,str2,...)：连接两个或多个字符串</li>
+        <li>trim()：删除字符串两端的空白符</li>
+        <li>charAt(num)：返回指定下标的的字符</li>
+        <li>charCodeAt(str)：返回指定下标的字符的编码</li>
+        <li>split(flag)：在指定符号处分割字符串</li>
+      </ul>
+      <h2>ES6拓展方法：</h2>
+      <ul>
+        <li>includes()：判断是否找到参数字符串。（输入正则表达式报错）</li>
+        <li>startsWith()：判断参数字符串是否在原字符串的头部。（输入正则表达式报错）</li>
+        <li>endsWith()：判断参数字符串是否在原字符串的尾部。（输入正则表达式报错）</li>
+        <li>repeat(count)：返回新的字符串，表示将字符串重复指定次数返回。count：重复的次数</li>
+        <li>padStart(len,str)：用参数从头部补全字符串。len：指定生成的字符串的长度；str：用来补全的字符串</li>
+        <li>padEnd(len,str)：用参数从尾部补全字符串。len：指定生成的字符串的长度；str：用来不全的字符串</li>
+      </ul>
+
+      <p>模板标签</p>
+    </div>
+
+    <script>
+      const str='aBbc';
+      function show(){
+        return str.toUpperCase();
+      }
+
+      console.log(str.includes('b'));
+      console.log(str.startsWith('a'));
+      console.log(str.endsWith('a'));
+      console.log(str.search('ab'));
+      console.log(str.replace('b','x'));//默认值替换第一个
+      console.log(str.replace(/b/g,'x'));
+      
+      console.log(str.repeat(2));
+      console.log(str.padStart(5,'x')); 
+      console.log(str.padEnd(5,'xyz')); //abcxy
+      console.log(str.padStart(2,'x')); //abc
+      console.log(str.padEnd(5)); //'abc  '
+      console.log(`模板标签${str}`);
+      console.log(`另一个模板标签${show()}`);
+      
+    </script>
+  </body>
+</html>
