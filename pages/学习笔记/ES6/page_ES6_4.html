@@ -55,6 +55,13 @@
     console.log(arr2);
     console.log(arr2.map(curVal=>curVal<60?'不及格':(curVal<80?'及格':(curVal<90?'良好':'优秀'))));  //映射
     console.log(arr2.reduce((prev,cur)=>prev+cur)/arr2.length); //汇总
+    console.log(arr2.reduce((prev,cur,curIndex,ary)=>{
+      if(curIndex===ary.length-1){
+        return (prev+cur)/ary.length;
+      }else{
+        return prev+cur;
+      }
+    }));
     console.log(arr2.filter(cur=>cur>60));  //过滤
     
   </script>

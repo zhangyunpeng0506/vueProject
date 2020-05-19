@@ -1,6 +1,8 @@
 # vueProject
 vue学习相关
 ES6语法
+正则表达式
+AJAX
 webpack
 
 学习计划：
