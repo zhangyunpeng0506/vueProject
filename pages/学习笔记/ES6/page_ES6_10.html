@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>ES6——Generator</title>
+  </head>
+  <body>
+    <div>
+      生成器：特殊的函数
+
+      普通函数：一路到底
+      generator函数：中间能停
+    </div>
+
+    <script src="../../../common/jQuery/jquery.js"></script>
+    <script src="a.js" type="module"></script>
+    <script src="b.js" type="module"></script>
+    <script>
+      //yield：即可传参又可返回中间结果
+      function *show(){
+        console.log('a');
+        let a = yield 12;  //暂时放弃执行
+        console.log('b');
+        console.log(a);
+      }
+
+      let gObj=show();
+      let res1 = gObj.next(1); //a
+      console.log(res1);
+      let res2 = gObj.next(2); //b 2
+      console.log(res2);
+
+      /*generator应用*/
+      //当要对请求结果进行判断时
+      /***************/
+
+      //Promise:适用于一次读多个数据，且数据相互之间不存在上下逻辑关联
+      //generator:适用于数据之间存在上下逻辑关联
+
+      function *dealSomething(){
+        let res1 = yield $.ajax({url:'/data/1.txt',type:'get',dataType:'json'});
+        if(Array.isArray(res1)){
+          let res2 = yield $.ajax({url:'/data/2.txt',type:'get',dataType:'json'});
+          console.log(res2);
+        }else{
+          
+        }
+      }
+
+      let it = dealSomething();
+      let promise=it.next().value;
+      promise.then(
+        res=>{
+          it.next(res);
+        },
+        e=>{
+          it.throw(e);
+        }
+      )
+
+      let p = new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          console.log(1)
+          resolve(1)
+        }, 1000);
+      })
+
+      p.then(
+        res=>{
+          console.log(res);
+        }
+      )
+
+    </script>
+  </body>
+</html>
