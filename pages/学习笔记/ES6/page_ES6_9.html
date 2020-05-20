@@ -9,19 +9,55 @@
       <p>Promise为异步编程提供了一种解决方案</p>
     </div>
 
+    <script src="../../../common/jQuery/jquery.js"></script>
     <script>
+      //用同步的方式书写异步操作
       //三种状态：pending（进行中）、fulfilled（已成功）、rejected（已失败）
-      let p=new Promise((resolve,reject)=>{
-        setTimeout(() => {
-          resolve();
-        }, 5000);
-      }).then(
-        ()=>{
-          alert('success')
-        }
-      ).catch(
 
-      );
+      Promise.all([
+        createPromise('/data/1.txt'),
+        createPromise('/data/2.txt')
+      ]).then(res=>{
+        let [arr1,arr2]=res;
+        console.log(arr1);
+        console.log(arr2);
+      },e=>{
+        console.log(e);
+      });
+
+      //Promise.race竞速  格式和all一致，哪个先返回先用哪个
+
+      function createPromise(url){
+        return new Promise((resolve,reject)=>{
+          //异步操作
+          $.ajax({
+            url:url,
+            type:'get',
+            dataType:'json',
+            success:function(res){
+              resolve(res);
+            },
+            error(e){
+              reject(e);
+            }
+          })
+          // let xhr;
+          // if(window.XMLHttpRequest){
+          //   xhr = new XMLHttpRequest();
+          // }else{
+          //   xhr = new ActiveXObject("Microsoft.XMLHTTP");
+          // }
+          // xhr.open('get',url,true);
+          // xhr.send();
+          // xhr.onreadystatechange=()=>{
+          //   if(xhr.status===200&&xhr.readyState===2){
+          //     resolve(xhr.responseText);
+          //   }else{
+          //     reject();
+          //   }
+          // }
+        });
+      }
     </script>
   </body>
 </html>
