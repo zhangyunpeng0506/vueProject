@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title>ES6——Promise</title>
+  </head>
+  <body>
+    <div>
+      <p>Promise为异步编程提供了一种解决方案</p>
+    </div>
+
+    <script>
+      //三种状态：pending（进行中）、fulfilled（已成功）、rejected（已失败）
+      let p=new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          resolve();
+        }, 5000);
+      }).then(
+        ()=>{
+          alert('success')
+        }
+      ).catch(
+
+      );
+    </script>
+  </body>
+</html>
