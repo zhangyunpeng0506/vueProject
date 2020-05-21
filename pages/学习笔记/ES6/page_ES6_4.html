@@ -15,17 +15,17 @@
       <li>shift() 删除并返回数组第一个元素。 改变原数组</li>
       <li>sort() 对数组元素排序。 改变原数组</li>
       <li>reverse() 颠倒数组元素顺序。 改变原数组</li>
-      <li>splice() 删除并向数组添加新的元素。 改变原数组</li>
+      <li>splice() 删除并向数组添加新的元素，返回删除的数组。 改变原数组</li>
       <li>concat() 连接两个或多个数组。 不改变原数组</li>
       <li>join() 将数组元素用指定分隔符分隔放入字符串。 不改变原数组</li>
-      <li>slice(start,end) 从数组返回指定元素。 不改变原数组</li>
+      <li>slice(start,end) 从数组返回指定元素，可以传负数。 不改变原数组</li>
     </ul>
     <p>ES5新增数组：</p>
     <ul>
-      <li>索引方法：indexOf()、lastIndexOf()</li>
+      <li>索引方法：indexOf(val,start)：返回第一个符合的元素索引、lastIndexOf(val,start)：返回最后一个符合的元素索引</li>
       <li>迭代方法：forEach()、map()、filter()、some()、every()</li>
       <li>归并方法：reduce()、reduceRight()</li>
-      <li>数组方法：isArray()</li>
+      <li>数组方法：isArray() （使用方式：Array.isArray(arr)）</li>
     </ul>
     </ul>
     <p>ES6数组方法：</p>
@@ -47,11 +47,11 @@
     console.log(arr.valueOf());
     console.log(arr.includes(2));
 
-    let arr2=[34,54,76,7,23,78,89,21,65,97];
+    let arr2=[34,54,76,7,78,78,89,21,65,97];
     arr2 = arr2.concat(Array.of(98));  //concat方法不改变原数组
     arr2.push(...Array.of(99,100));
     arr2.fill(61,0,1);
-    arr2.copyWithin(1,2,3);
+    arr2.copyWithin(1,2,3); //将索引是1的元素替换成索引为2的元素
     console.log(arr2);
     console.log(arr2.map(curVal=>curVal<60?'不及格':(curVal<80?'及格':(curVal<90?'良好':'优秀'))));  //映射
     console.log(arr2.reduce((prev,cur)=>prev+cur)/arr2.length); //汇总
@@ -63,6 +63,10 @@
       }
     }));
     console.log(arr2.filter(cur=>cur>60));  //过滤
+
+    console.log(arr2.findIndex(item=>item===78)); //返回第一个符合条件的
+    
+    console.log(arr2.find(item=>item>60));  //返回第一个符合条件的
     
   </script>
 </html>

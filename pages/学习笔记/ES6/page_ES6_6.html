@@ -20,7 +20,7 @@
         <li>substr(start,leng)：len：截取的字符长度，如果不传则截取从其实位置到结尾</li>
       </ul>
       <ul>
-        <li>replace()：用一个字符串替换指定字符串。默认只匹配第一个</li>
+        <li>replace()：用一个字符串替换指定字符串。默认只匹配第一个，要想匹配多个，使用正则表达式</li>
         <li>toUpperCase()：转化成大写</li>
         <li>toLowerCase()：转化成小写</li>
         <li>concat(str1,str2,...)：连接两个或多个字符串</li>
@@ -32,7 +32,7 @@
       <h2>ES6拓展方法：</h2>
       <ul>
         <li>includes()：判断是否找到参数字符串。（输入正则表达式报错）</li>
-        <li>startsWith()：判断参数字符串是否在原字符串的头部。（输入正则表达式报错）</li>
+        <li>startsWith()：判断参数字符串是否在原字符串的头部。（输入正则表达式报错），会自己转化类型（弱匹配）</li>
         <li>endsWith()：判断参数字符串是否在原字符串的尾部。（输入正则表达式报错）。应用：判断文件类型</li>
         <li>repeat(count)：返回新的字符串，表示将字符串重复指定次数返回。count：重复的次数</li>
         <li>padStart(len,str)：用参数从头部补全字符串。len：指定生成的字符串的长度；str：用来补全的字符串</li>

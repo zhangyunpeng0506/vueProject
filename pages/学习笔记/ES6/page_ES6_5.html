@@ -38,21 +38,22 @@
 
       //Set
       let set=new Set([2,...arr1,obj1,obj1,obj2]);
+      //有size属性才可以遍历
       set.forEach(x=>{console.log(x);})
       for(let k of set.keys()){
         console.log(k);
       }
       for(let v of set.values()){
-        console.log(v);
+        console.log(v); //set的key和value是一样的
       }
       for(let e of set.entries()){
-        console.log(e);
+        console.log(e); //返回[{key:value}]键值对的对象数组
       }
       console.log(set);
       console.log(set.has(obj1));
       set.add('add');
       console.log(set);
-      set.delete('add'); //参数为值，必需
+      set.delete('add'); //参数为键名，必需（Set的键名和键值是一样的）
       console.log(set);
       console.log(set.size);
       // set.clear();

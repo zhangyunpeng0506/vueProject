@@ -10,6 +10,7 @@
       <ul>
         <li>如果只有一个参数，()可以省</li>
         <li>如果只有一个return，{}可以省</li>
+        <li>箭头函数没有自己的this</li>
       </ul>
       <p>参数展开：</p>
     </div>
@@ -55,6 +56,14 @@
         console.log(args);
       }
       show5(1,2,3,4,5,6);
+
+      function sum(...args){
+        return args.reduce((prev,current)=>{
+          return prev+current;
+        })
+      }
+
+      console.log(`数相加结果${sum(2,2,45,7,8,8,9,2,1)}`);
 
       //展开数组
       let arr1=[1,2,3];
