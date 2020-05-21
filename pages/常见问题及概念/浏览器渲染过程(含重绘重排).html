@@ -25,12 +25,12 @@
         <li>render tree和DOM tree不完全对应</li>
         <li>display:none的元素不在render tree中</li>
         <li>visiblity:hidden的元素在render tree中</li>
-        <li>脱离文档流脱离的是render tree</li>
+        <li>脱离文档流脱离的是render tree（渲染树）</li>
       </ul>
       <p>渲染阻塞：JS阻塞页面（阻塞DOM树和CSSOM树构建）、CSS阻塞渲染</p>
       <div>
         <div>回流(reflow)：页面发生布局变化，页面需要倒回去重新渲染，这个回退的过程叫回流</div>
-        <div>重绘(repaint)：颜色背景色等不影响布局的属性变化，需要重新绘制颜色，但页面布局未发生变化</div>
+        <div>重绘(repaint)：颜色背景色，visibility等不影响布局的属性变化，需要重新绘制颜色，但页面布局未发生变化</div>
       </div>
     </div>
     <script>
