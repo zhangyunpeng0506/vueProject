@@ -38,25 +38,51 @@
       //generator:适用于数据之间存在上下逻辑关联
 
       function *dealSomething(){
-        let res1 = yield $.ajax({url:'/data/1.txt',type:'get',dataType:'json'});
+        let res1 = yield commonAjax('/data/1.txt');
         if(Array.isArray(res1)){
-          let res2 = yield $.ajax({url:'/data/2.txt',type:'get',dataType:'json'});
+          let res2 = yield commonAjax('/data/2.txt');
           console.log(res2);
         }else{
-          
+          let res3 = yield commonAjax('/data/3.txt');
+          console.log(res3);
         }
       }
 
-      let it = dealSomething();
-      let promise=it.next().value;
-      promise.then(
-        res=>{
-          it.next(res);
-        },
-        e=>{
-          it.throw(e);
+      function commonAjax(url,type='get',data=[],dataType='json'){
+        return $.ajax({url,type,dataType})
+      }
+
+      //一个简单的执行器
+      function runner(gen){
+        let it = gen();
+        return next(it.next());  //启动generator函数
+
+        function next({done,value}){  //解构赋值，直接将next值赋给done和value，对每次执行产生的值进行判断
+          return Promise.all([value]).then(
+            res=>{
+              if(done){
+                return res;
+              }else{
+                next(it.next(res)); //generator函数未执行完，让函数继续执行并将中间产生值res传出去
+              }
+            },
+            e=>{ return e }
+          )
         }
-      )
+      }
+
+      runner(dealSomething);
+
+      // let it = dealSomething();
+      // let promise=it.next().value;
+      // promise.then(
+      //   res=>{
+      //     it.next(res);
+      //   },
+      //   e=>{
+      //     it.throw(e);
+      //   }
+      // )
 
       let p = new Promise((resolve,reject)=>{
         setTimeout(() => {
