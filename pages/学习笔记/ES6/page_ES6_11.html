@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title></title>
+  </head>
+  <body>
+    <script src="../../../common/jQuery/jquery.js"></script>
+    <script>
+      
+      /*
+        1.async函数返回一个Promise对象，可以用then方法添加回调
+        2.await操作符用于等待一个Promise对象，返回Promise对象的处理结果，只能在异步的async function中使用
+        3.await后面是其他值则直接返回
+      */
+
+      async function asyncShow(){
+        console.log('————————————————————————————');
+        console.log('asyncShow函数');
+        let data = await getData(); //await关键字仅在async function中有用
+        console.log(data);
+        if(Array.isArray(data)&&data.length>0){
+          console.log(data);
+        }else{
+          console.log('asyncShow请求出错');
+        }
+        console.log('————————————————————————————');
+        return 'async执行结束'
+      }
+
+      function show(){
+        console.log('————————————————————————————');
+        console.log('show函数');
+        let data = getData();
+        if(Array.isArray(data)&&data.length>0){//因为没有等待getData返回值，所以返回的是一个Promise对象
+          console.log(data);
+        }else{
+          console.log('show请求出错');
+        }
+        console.log('————————————————————————————');
+      }
+
+      function getData(){
+       return Promise.all([$.ajax({url:'/data/1.txt',type:'get',dataType:'json'})]).then(
+          res=>{return res},
+          e=>{return []}
+        );
+      }
+
+      show();
+
+      asyncShow().then( //async返回一个Promise对象，因此可以使用then方法，res是函数的return值
+        res=>{console.log(res);}
+      )
+    </script>
+  </body>
+</html>
