@@ -10,13 +10,24 @@
       <ul>
         <li>如果只有一个参数，()可以省</li>
         <li>如果只有一个return，{}可以省</li>
-        <li>箭头函数没有自己的this</li>
+        <li>箭头函数没有自己的this，它的this是向外层作用域一层一层查找this，直到有this的定义</li>
       </ul>
       <p>参数展开：</p>
     </div>
 
     <script>
       /**************箭头函数**************/
+      const obj={
+        test(){
+          setTimeout(() => {
+            console.log(this);  //obj
+          }, 1000);
+          setTimeout(function() {
+            console.log(this);  //window
+          }, 1000);
+        }
+      }
+
       let show=function(){
         console.log('success');
       }
