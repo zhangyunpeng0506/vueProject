@@ -58,6 +58,25 @@
           // }
         });
       }
+    
+      let p = new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          console.log(1)
+          resolve(1)
+        }, 1000);
+      })
+
+      //方式一：
+      p.then(
+        res=>console.log(`Promise:${res}`)
+      )
+
+      //方式二：
+      Promise.all([p]).then(
+        res=>console.log(`Promise-all:${res}`)
+      ).catch(
+        e=>console.log(e)
+      )
     </script>
   </body>
 </html>

@@ -104,7 +104,7 @@
 
       //3.重写console
       function log(...msg){
-        //字符串模板会自动将数组解构
+        //字符串模板会自动将数组解构，不回结构对象和类数组对象
         return console.log.apply(console.log,[`my message: ${msg}`])
       }
       log('hhh','ggg');
