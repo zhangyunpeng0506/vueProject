@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title></title>
+  </head>
+  <body>
+
+    <script>
+      // 1.基本数据类型：String、Boolean、Number、Undefined、Null、Symbol
+      // 2.引用数据类型：Object、Array、Function
+
+      //Symbol是一种唯一标识符，可用作对象的唯一属性名，这样其他人就无法改写或覆盖你设置的属性值
+      // Symbol('id')===Symbol('id')  false
+      // for...in object.keys()不能访问
+
+      let id1 = Symbol('id');
+      let id2 = Symbol('id');
+      console.log(id1===id2); //false
+      console.log(Symbol.keyFor(id1));  //undefined
+      
+      
+      let name1 = Symbol.for('name');  //全局注册并登记
+      let name2 = Symbol.for('name');
+      console.log(name1===name2); //true
+      console.log(Symbol.keyFor(name1));  //name
+
+      const obj={
+        [id1]:1000,
+        name:'zyp'
+      }
+
+      //Object.getOwnPropertySymbols返回一个数组，成员是当前对象的所有用作属性名的Symbol值
+      console.log(Object.getOwnPropertySymbols(obj));
+    </script>
+  </body>
+</html>
