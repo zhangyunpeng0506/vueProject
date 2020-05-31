@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title></title>
+  </head>
+  <body>
+
+    <script>
+      // 1.基本数据类型：String、Boolean、Number、Undefined、Null、Symbol
+      // 2.引用数据类型：Object、Array、Function
+
+      // Symbol是一种唯一标识符，可用作对象的唯一属性名，这样其他人就无法改写或覆盖你设置的属性值
+      // Symbol('id')===Symbol('id')  false
+      // for...in object.keys()不能访问
+      // Symbol不需要new关键字，他是原始数据类型，不是对象
+
+      let id1 = Symbol('id');
+      let id2 = Symbol('id');
+      console.log(id1===id2); //false
+      console.log(Symbol.keyFor(id1));  //undefined
+      
+      let name1 = Symbol.for('name');  //全局注册并登记
+      let name2 = Symbol.for('name');
+      console.log(name1===name2); //true
+      console.log(Symbol.keyFor(name1));  //name
+
+      const obj={
+        [id1]:1000,
+        name:'zyp'
+      }
+
+      //Object.getOwnPropertySymbols返回一个数组，成员是当前对象的所有用作属性名的Symbol值
+      console.log(Object.getOwnPropertySymbols(obj));
+
+
+      /*数据类型判断方式*/
+      //1.typeof
+      /*结论：
+       *1.除了null之外其他的基本数据类型检测正确，检测null的结果为object
+       *2.引用数据类型除了function和object外检测结果都不对（都为object）
+       */
+      console.log('----------------typeof----------------');
+      console.log(`检测Number：${ typeof 1 }`);
+      console.log(`检测String：${ typeof '1'}`);
+      console.log(`检测Boolean：${ typeof true }`);
+      console.log(`检测Symbol：${ typeof Symbol() }`);
+      console.log(`检测Undefined：${ typeof undefined }`);
+      console.log(`检测Null：${ typeof null }`);
+      console.log(`检测Array：${ typeof [] }`);
+      console.log(`检测Object：${ typeof {} }`);
+      console.log(`检测Function：${ typeof function(){} }`);
+      
+      //2.instanceof
+      /*结论：
+      *1.不能检测Null和Undefined（直接报错）
+      *2.引用数据类型检测正确
+      *3.基本数据类型字面量创建的检测错误，必须是new出来
+        （个人见解：instanceof去检测类型是根据原型链检测原型对象，但字面量直接定义的基本数据类型没有原型对象）
+      *4.Symbol类型不需要new关键字，因此也不能正确检测
+      */
+      console.log('----------------instanceof----------------');
+      console.log(`检测Number（字面量）：${ 1 instanceof Number }`);
+      console.log(`检测Number（new）：${ new Number(1) instanceof Number }`);
+      console.log(`检测String（字面量）：${ '1' instanceof String }`);
+      console.log(`检测String（new）：${ new String('1') instanceof String }`);
+      console.log(`检测Boolean（字面量）：${ true instanceof Boolean }`);
+      console.log(`检测Boolean（new）：${ new Boolean(true) instanceof Boolean }`);
+      console.log(`检测Symbol：${ Symbol() instanceof Symbol }`);
+      // console.log(`检测Undefined：${ undefined instanceof Undefined }`);
+      // console.log(`检测Null：${ null instanceof Null }`);
+      console.log(`检测Array：${ [] instanceof Array }`);
+      console.log(`检测Object：${ {} instanceof Object }`);
+      console.log(`检测Function：${ function(){} instanceof Function }`);
+
+      //3.constructor
+      /*结论：
+      *1.不能检测Null和Undefined（直接报错）
+      *2.其他类型一般情况下可以正常检测，但是如果手动修改了constructor的指向，这种方式就不行
+      */
+      console.log('----------------constructor----------------');
+      console.log(`检测Number：${ (1).constructor===Number }`);
+      console.log(`检测String：${ ('1').constructor===String }`);
+      console.log(`检测Boolean：${ (true).constructor===Boolean }`);
+      console.log(`检测Symbol：${ (Symbol()).constructor===Symbol }`);
+      // console.log(`检测Undefined：${ (undefined).constructor===Undefined }`);
+      // console.log(`检测Null：${ (null).constructor===Null }`);
+      console.log(`检测Array：${ ([]).constructor===Array }`);
+      console.log(`检测Object：${ ({}).constructor===Object }`);
+      console.log(`检测Function：${ (function(){}).constructor===Function }`);
+      function fn(){}
+      fn.prototype=new Array()
+      let f = new fn()
+      console.log(f.constructor===Array); //true
+      console.log(f.constructor===Function);  //false
+
+      //4.Object.prototype.toString
+      /*结论：
+       *可以正确检测所有类型
+       */
+      console.log('----------------Object.prototype.toString----------------');
+      let a = Object.prototype.toString;
+      console.log(`检测Number：${ a.call(1) }`);
+      console.log(`检测String：${ a.call('1') }`);
+      console.log(`检测Boolean：${ a.call(true) }`);
+      console.log(`检测Symbol：${ a.call(Symbol()) }`);
+      console.log(`检测Undefined：${ a.call(undefined) }`);
+      console.log(`检测Null：${ a.call(null) }`);
+      console.log(`检测Array：${ a.call([]) }`);
+      console.log(`检测Object：${ a.call({}) }`);
+      console.log(`检测Function：${ a.call(function(){}) }`);
+    </script>
+  </body>
+</html>
