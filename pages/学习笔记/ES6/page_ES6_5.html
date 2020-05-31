@@ -38,6 +38,8 @@
 
       //Set
       let set=new Set([2,...arr1,obj1,obj1,obj2]);
+      //set支持链式写法
+      set.add(1).add(2).add(3).add(4)
       //有size属性才可以遍历
       set.forEach(x=>{console.log(x);})
       for(let k of set.keys()){
@@ -65,8 +67,7 @@
       
       //Map
       let map=new Map();
-      map.set(obj1,arr1);
-      map.set(arr1,obj2);
+      map.set(obj1,arr1).set(arr1,obj2);
       map.forEach(x=>{
         console.log(x);
       })
@@ -76,8 +77,8 @@
       for(let v of map.values()){
         console.log(v);
       }
-      for(let m of map.entries()){
-        console.log(m);
+      for(let [k,v] of map){//或者 遍历map.entries()
+        console.log(k,v);
       }
       console.log(map);
       console.log(map.get(obj1));
@@ -100,6 +101,7 @@
       
       //方法二：ES6
       console.log(Array.from(new Set(arr)));
+      console.log([...new Set(arr)]); //直接将set展开（set是类数组，直接展开到数组）
       /**************************************************/
     </script>
   </body>
