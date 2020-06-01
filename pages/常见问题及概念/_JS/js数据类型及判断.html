@@ -7,7 +7,7 @@
   <body>
 
     <script>
-      // 1.基本数据类型：String、Boolean、Number、Undefined、Null、Symbol
+      // 1.基本数据类型（6种）：String、Boolean、Number、Undefined、Null、Symbol
       // 2.引用数据类型：Object、Array、Function
 
       // Symbol是一种唯一标识符，可用作对象的唯一属性名，这样其他人就无法改写或覆盖你设置的属性值
@@ -20,6 +20,7 @@
       console.log(id1===id2); //false
       console.log(Symbol.keyFor(id1));  //undefined
       
+      //keyFor方法 获取全局注册Symbol的键名
       let name1 = Symbol.for('name');  //全局注册并登记
       let name2 = Symbol.for('name');
       console.log(name1===name2); //true
@@ -56,7 +57,6 @@
       *1.不能检测Null和Undefined（直接报错）
       *2.引用数据类型检测正确
       *3.基本数据类型字面量创建的检测错误，必须是new出来
-        （个人见解：instanceof去检测类型是根据原型链检测原型对象，但字面量直接定义的基本数据类型没有原型对象）
       *4.Symbol类型不需要new关键字，因此也不能正确检测
       */
       console.log('----------------instanceof----------------');

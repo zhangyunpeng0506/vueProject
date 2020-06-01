@@ -24,32 +24,48 @@
 
       //a.去掉奇数只保留偶数
       const arr=[1, 2, 4, 5, 6, 9, 10, 15];
-      console.log(arr.filter(function(x){return x%2===0}));
+      console.log(arr.filter(x=>x%2===0));
+      // console.log(arr.filter(function(x){return x%2===0}));
 
       //b.去掉空字符串
       const arr2=['A', '', 'B', null, undefined, 'C', '  '];
-      console.log(arr2.filter(function(x){return x&&x.trim().length>0}));
+      console.log(arr2.filter(x=>x&&x.trim().length>0));
+      // console.log(arr2.filter(function(x){return x&&x.trim().length>0}));
 
       //c.去掉重复元素
       const arr3=['A','A','C','v','c','b','c'];
-      console.log(arr3.filter(function(x,index,arr){return arr.indexOf(x)===index}));
+      console.log(arr3.filter((x,i,arr)=>arr.indexOf(x)===i));
+      console.log([...new Set(arr3)]);
+      console.log(Array.from(new Set(arr3)));
+      // console.log(arr3.filter(function(x,index,arr){return arr.indexOf(x)===index}));
 
       //d.筛选出数组的素数
       const arr4=[21,43,76,21,42,85,1,0,213,4,2,6,768,23,765];
-      console.log(arr4.filter(function(x){
+      console.log(arr4.filter(x=>{
         if(x<2){
-          return false;
+          return false
         }
         for(let i=2;i<x;i++){
           if(x%i===0){
-            return false;
+            return false
           }
         }
-        return true;
-      }))
+        return true
+      }));
+      // console.log(arr4.filter(function(x){
+      //   if(x<2){
+      //     return false;
+      //   }
+      //   for(let i=2;i<x;i++){
+      //     if(x%i===0){
+      //       return false;
+      //     }
+      //   }
+      //   return true;
+      // }))
 
       /*2.map()
-          定义：返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值（map不会改变原始数组）
+          定义：返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值（map不会改变原始数组，映射一个新的数组）
           语法：array.map(function(currentValue,currentIndex,arr),thisValue);
       */
 
@@ -101,26 +117,18 @@
        /*5.Array的一些高阶函数*/
        /*5.1 every()判断所有元素是否满足测试条件*/
        //h
-       console.log(arr7.every(function(x){
-         return x.length>0;
-       }))  //true 因为每个元素的长度都大于0
+       console.log(arr7.every(x=>x.length>0))  //true 因为每个元素的长度都大于0
 
        //i.
-       console.log(arr7.every(function(x){
-         return x.toLowerCase()===x;
-       }))  //false 因为不是每个元素都是全部大写的
+       console.log(arr7.every(x=>x.toLowerCase()===x))  //false 因为不是每个元素都是全部大写的
 
        /*5.2 find()查找符合条件的第一个元素，找到了就返回这个元素，否则返回undefined*/
        //j.
-       console.log(arr7.find(function(x){
-         return x.indexOf('M')>-1
-       }))
+       console.log(arr7.find(x=>x.indexOf('M')>-1))
 
        /*5.3 findIndex()查找符合条件的第一个元素，找到了返回这个元素的索引，否则返回-1*/
        //k.
-       console.log(arr7.find(function(x){
-         return x.toLowerCase()===x;
-       }))
+       console.log(arr7.find(x=>x.toLowerCase()===x))
 
        /*5.4 forEach()把每个元素作用于传入的函数，但不会返回新的数组，常用于遍历数组，因此传入的函数不需要返回值*/
        //l.
