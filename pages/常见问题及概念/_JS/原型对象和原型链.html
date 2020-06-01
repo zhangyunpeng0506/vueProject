@@ -5,7 +5,7 @@
   </head>
   <body>
     <div>
-      <img src="../../imgs/proto.jpg">
+      <img src="../../../imgs/proto.jpg">
     </div>
 
     <div>
@@ -52,7 +52,42 @@
       console.log('----',person1.constructor===Person); //true
       console.log('-----',person1.__proto__.constructor===Person);  //true
       console.log('------',person1.__proto__===Person.prototype); //true
-      console.log('-------',Person.prototype.constructor===Person)  //true
+      console.log('-------',Person.prototype.constructor===Person);  //true
+
+      /**原型链的应用**/
+      //1.实现(5).add(3).minus(2)，使其输出结果为6
+      //解题思路：在Number的原型链上增加add和minus方法
+      
+      /*function check(n){
+        n = Number(n);
+        return isNaN(n)?0:n;
+      }
+
+      Number.prototype.add= function(n) {  //这里不能用箭头函数，箭头函数this指向
+        return  this + check(n);
+      }
+      Number.prototype.minus= function(n) {
+        return this - check(n);
+      }*/
+
+      //将上面代码整合
+      (function(){
+        function check(n){
+          n=Number(n);
+          return isNaN(n)?0:n;
+        }
+
+        function add(n){
+          return this+check(n)
+        }
+
+        function minus(n){
+          return this-check(n)
+        }
+
+        Number.prototype.add=add;
+        Number.prototype.minus=minus;
+      })()
     </script>
   </body>
 </html>
