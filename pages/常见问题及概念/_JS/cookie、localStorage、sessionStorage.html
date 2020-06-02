@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  </head>
+  <body>
+    <p>cookie：一般由服务器生成，可设置失效时间。如果在浏览器端生成cookie，默认是关闭浏览器后失效；4k左右存放大小；会携带在http头中</p>
+    <p>localStorage：除非被清除，否则永久保存；一般为5M；仅在客户端保存</p>
+    <p>sessionStorage：仅在当前会话下有效，关闭页面或浏览器后被清除；一般为5M；仅在客户端保存</p>
+    <script>
+      localStorage.setItem('test1','lalala');
+      localStorage.test3='???';
+      console.log(localStorage.test3);
+      localStorage['test4']='!!!';
+      console.log(localStorage['test4']);
+      sessionStorage.setItem('test2','hahaha');
+      localStorage.getItem('test1');
+      sessionStorage.getItem('test2');
+      for(let i=0;i<localStorage.length;i++){
+        console.log(localStorage.key(i));
+      }
+      localStorage.removeItem('test1');
+      sessionStorage.removeItem('test2');
+      localStorage.clear();
+      sessionStorage.clear();
+    </script>
+  </body>
+</html>
