@@ -10,10 +10,10 @@
       <ul>
         <li>如果只有一个参数，()可以省</li>
         <li>如果只有一个return，{}可以省</li>
-        <li>箭头函数没有自己的this，它的this是向外层作用域一层一层查找this，直到有this的定义</li>
-        <li>普通函数的this最终指向调用它的对象</li>
+        <li>箭头函数没有自己的this，它的this是向外层作用域一层一层查找this，直到有this的定义（使用call或apply等任何方式都无法改变this的指向）</li>
+        <li>普通函数的this最终指向调用它的对象，但是回调函数中的this是window</li>
       </ul>
-      <p>参数展开：</p>
+      <p onclick="test()">参数展开：</p>
     </div>
 
     <script>
@@ -27,6 +27,15 @@
             console.log(this);  //window
           }, 1000);
         }
+      }
+
+      let testArr=[2,3];
+      function test(){
+        testArr.sort(function(a,b){
+        //this指向window，回调函数中的this
+        console.log(this);
+          return a-b;
+        })
       }
 
       let show=function(){
