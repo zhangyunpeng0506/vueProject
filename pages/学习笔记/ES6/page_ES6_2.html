@@ -10,8 +10,10 @@
       <ul>
         <li>如果只有一个参数，()可以省</li>
         <li>如果只有一个return，{}可以省</li>
-        <li>箭头函数没有自己的this，它的this是向外层作用域一层一层查找this，直到有this的定义（使用call或apply等任何方式都无法改变this的指向）</li>
-        <li>普通函数的this最终指向调用它的对象，但是回调函数中的this是window</li>
+        <li>1.箭头函数没有自己的this，它的this是向外层作用域一层一层查找this，直到有this的定义（使用call或apply等任何方式都无法改变this的指向）</li>
+        <li>2.普通函数的this最终指向调用它的对象，但是回调函数中的this是window</li>
+        <li>3.箭头函数中没有arguments（类数组），只能基于...arg获取传递的参数集合（数组）</li>
+        <li>4.箭头函数不能new执行（因为：箭头函数没有this，也没有prototype）</li>
       </ul>
       <p onclick="test()">参数展开：</p>
     </div>
@@ -38,6 +40,17 @@
         })
       }
 
+      let fn = function(){
+        console.log(arguments); //用箭头函数会报错
+      }
+
+      let fn2=(...args)=>{
+        console.log(args);
+      }
+
+      fn(1,2,3);
+      fn2(1,2,3)
+
       let show=function(){
         console.log('success');
       }
@@ -47,6 +60,20 @@
         console.log('箭头函数：success');
       }
       show2();
+
+      /*思考题*/
+      
+      Array.prototype.each=function(callback,obj){
+        if(obj){
+          return this.map((item,index)=>{
+            return callback(item,index)?callback(item,index):item;
+          })
+        }else{
+          return this.map((item,index)=>{
+            return callback(item,index)?callback(item,index):item;
+          })
+        }
+      }
 
       //箭头函数传参
       let show3=(a,b)=>{
