@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>盒子模型</title>
+
+    <style type="text/css">
+      .parent::before{
+        content: "";
+        display: table;
+      }
+      .triangle{
+        width: 0;
+        height: 0;
+        border: solid 100px;
+        border-color: blue transparent transparent transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <p>IE盒子模型：width表示content+padding+border</p>
+    <p>标准盒子模：width表示content宽度</p>
+
+    <p>宽度计算：</p>
+    <div>标准盒子模型的盒子宽度：左右margin + 左右border + 左右padding + content</div>
+    <div>IE盒子模型的盒子宽度：左右margin + width</div>
+
+    <p>通常背景显示区域不包括margin，margin是透明的</p>
+    <p>外边距合并：合并后外边距高度等于合并前较大的那个，只有普通文档流的外边框才会合并</p>
+
+    <p>box-sizing:content-box/padding-box/border-box</p>
+
+    <p>1.margin越界问题</p>
+    <!--当parent没有设置border时，child的margin会跑到parent外面去-->
+    <!--解决方案：
+        1.给parent设置border  //只要有就行
+        2.给parent设置padding //只要设置了就行，无论值是否比child的margin大
+        3.给parent设置overflow:hidden
+        4.parent加前置伪元素(推荐)
+    -->
+    <div class="parent" style=" width: 100px;
+                                height: 100px;
+                                margin: 10px;
+                                background-color: red;">
+      <div class="child" style="width: 50px;
+                                height: 50px;
+                                margin: 20px;
+                                background-color: chartreuse;"></div>
+    </div>
+    <p>2.浏览器间的盒子模型（IE盒子模型、标准盒子模型）</p>
+    
+    <div style="box-sizing: border-box;width: 100px;height: 100px;margin: 10px;background-color: blue;"></div>
+    <p>3.用盒子模型画三角形</p>
+    <div class="triangle"></div>
+    <script>
+      //伪元素：->使用双冒号
+      //伪类：->使用单冒号
+    </script>
+  </body>
+</html>
