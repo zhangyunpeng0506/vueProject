@@ -22,6 +22,9 @@
         <li>原型链就是由原型组合成的一个链条，实例对象的__proto__是原型对象，原型对象的本质也是对象，所以原型对象也有__proto__，这样一直往上找__proto__</li>
         <li>原型对象的作用：用来解决构造函数在创建新实例时，防止重复执行所导致的性能降低；每创建一次实例，构造函数就会执行一次（包括里面的方法），占用内存</li>
         <li>注意事项：原型属性和方法统一定义时，需要重新定义构造器的constructor的指向</li>
+        <li>函数才有prototype属性(显示原型)</li>
+        <li>__proto__：隐式原型</li>
+        <li>Oject的原型对象是原型链的尽头</li>
       </ul>
     </div>
 
@@ -53,6 +56,7 @@
       console.log('-----',person1.__proto__.constructor===Person);  //true
       console.log('------',person1.__proto__===Person.prototype); //true
       console.log('-------',Person.prototype.constructor===Person);  //true
+      console.log('---------',Object.prototype.__proto__);  //null
 
       /**原型链的应用**/
       //1.实现(5).add(3).minus(2)，使其输出结果为6
