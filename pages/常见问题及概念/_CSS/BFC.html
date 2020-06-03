@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>BFC</title>
+  </head>
+  <body>
+    <p>何为BFC：</p>
+    <div>BFC：块级格式化上下文，是web页面中盒模型布局的css渲染模式，指一个独立的渲染区域或者说是一个隔离的独立容器。</div>
+    <p>BFC特性</p>
+    <ul>
+      <li>内部的box会在垂直方向上从顶部开始一个接一个放置</li>
+      <li>属于同一BFC的box的margin相互叠加</li>
+      <li>不会出现margin越界的问题</li>
+      <li>容器里面的子元素不会影响到外面的元素</li>
+      <li>计算BFC高度时，浮动子元素也参与计算（解决设置子元素为浮动后，父元素发生高度塌陷）</li>
+    </ul>
+    <p>创建BFC</p>
+    <ul>
+      <li>body</li>
+      <li>float设置除了none以外的值</li>
+      <li>position设置fixed/absolute</li>
+      <li>display设置table-cell,table-caption,inline-block,flex,inline-flex</li>
+      <li>overflow设置除visible以外的值</li>
+    </ul>
+    <div style="width: 200px;height: 200px;background-color: burlywood;float: left;margin: 10px;"></div>
+
+    <div style="margin: 10px;overflow: hidden;">
+      <div style="width:100px;height:100px;background-color:red;margin: 10px;"></div>
+      <div style="width:100px;height:100px;background-color:greenyellow;margin: 10px;"></div>
+      <div style="width:100px;height:100px;background-color:blue;margin: 10px;"></div>
+    </div>
+  </body>
+</html>
