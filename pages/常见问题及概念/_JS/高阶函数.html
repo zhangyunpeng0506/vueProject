@@ -134,6 +134,22 @@
        //l.
        arr7.forEach(console.log)
 
+       //m.将数组中字符串大写改为小写，小写改为大写，如果是数字则不变
+       let arr8=['dSaacA','INdad1ds',123,'dDSC']
+       console.log(arr8.map((x)=>{
+         if(isNaN(x)){
+          return x.split('').reduce((prev,cur,curIndex)=>{
+           if(curIndex===1){
+             return (prev===prev.toUpperCase()?prev.toLowerCase():prev.toUpperCase())+(cur===cur.toUpperCase()?cur.toLowerCase():cur.toUpperCase())
+           }else{
+             return prev+(cur===cur.toUpperCase()?cur.toLowerCase():cur.toUpperCase())
+           }
+         })
+         }else{
+          return x;
+         }
+       }));
+
     </script>
   </body>
 </html>

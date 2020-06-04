@@ -42,8 +42,8 @@
     <!--解决方案：
         1.给parent设置border  //只要有就行
         2.给parent设置padding //只要设置了就行，无论值是否比child的margin大
-        3.给parent设置overflow:hidden
-        4.parent加前置伪元素(推荐)
+        3.给parent设置overflow:hidden（原理：形成一个BFC空间）
+        4.parent加前置伪元素(推荐)  （原理：形成一个BFC空间）
     -->
     <div class="parent" style=" width: 100px;
                                 height: 100px;

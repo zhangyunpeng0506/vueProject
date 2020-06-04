@@ -10,7 +10,7 @@
 
     <div>
       <ul>
-        <li>函数才有prototype属性，对象没有这个属性，对象对应的是__proto__属性</li>
+        <li>函数才有prototype（显式原型）属性，对象没有这个属性，对象对应的是__proto__（隐式原型）属性</li>
         <li>函数广义上来说有__proto__这个属性，因为函数也属于对象，只要是对象就有__proto__属性，只不过函数的__proto__属性是Function.prototype</li>
         <li>实例是通过new一个构造函数生成</li>
         <li>原型对象也是对象，也有__proto__,他的__proto__还是原型对象</li>
@@ -24,7 +24,7 @@
         <li>注意事项：原型属性和方法统一定义时，需要重新定义构造器的constructor的指向</li>
         <li>函数才有prototype属性(显示原型)</li>
         <li>__proto__：隐式原型</li>
-        <li>Oject的原型对象是原型链的尽头</li>
+        <li>Object的原型对象是原型链的尽头</li>
       </ul>
     </div>
 
