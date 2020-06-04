@@ -24,11 +24,11 @@
         console.log(a);
       }
 
-      let gObj=show();
+      let gObj=show();  //函数启动，但并未执行，需要next，然后执行到第一个yield关键字
       let res1 = gObj.next(1); //a
-      console.log(res1);
+      console.log(res1); //{value:12,done:false}
       let res2 = gObj.next(2); //b 2
-      console.log(res2);
+      console.log(res2);//{value:undefined,done:true}
 
       /*generator应用*/
       //当要对请求结果进行判断时
@@ -57,7 +57,7 @@
         let it = gen();
         return next(it.next());  //启动generator函数
 
-        function next({done,value}){  //解构赋值，直接将next值赋给done和value，对每次执行产生的值进行判断
+        function next({done,value}){  //解构赋值，直接将next值赋给done和value，只要保证和键名对应，不必在意顺序，对每次执行产生的值进行判断
           return Promise.all([value]).then(
             res=>{
               if(done){

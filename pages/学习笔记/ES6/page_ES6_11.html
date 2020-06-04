@@ -52,6 +52,23 @@
       asyncShow().then( //async返回一个Promise对象，因此可以使用then方法，res是函数的return值
         res=>{console.log(res);}
       )
+
+      async function initFn(){
+        let data = await getInfo()
+        return data;
+      }
+
+      function getInfo(){
+        return new Promise((resolve,reject)=>{
+          setTimeout(() => {
+            resolve(`等待5秒`)
+          }, 5000);
+        })
+      }
+
+      initFn().then(
+        res=>console.log(res)
+      )
     </script>
   </body>
 </html>
