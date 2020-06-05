@@ -20,7 +20,7 @@
     <p>Map：类似于对象，也是键值对形式，但是键名范围不局限在字符串</p>
     <ul>
       <li>属性：size</li>
-      <li>操作：set/get/add/has/delete/clear</li>
+      <li>操作：set/get/has/delete/clear</li>
       <li>遍历：keys/values/entries/forEach</li>
     </ul>
 
@@ -48,8 +48,8 @@
       for(let v of set.values()){
         console.log(v); //set的key和value是一样的
       }
-      for(let e of set.entries()){
-        console.log(e); //返回[{key:value}]键值对的对象数组
+      for(let [k,v] of set.entries()){
+        console.log(k,v); //返回[{key:value}]键值对的对象数组
       }
       console.log(set);
       console.log(set.has(obj1));

@@ -9,21 +9,21 @@
       <h2>ES5及之前方法：</h2>
       <p>检索字符串：</p>
       <ul>
-        <li>indexOf(str,start)：返回字符串在文本中首次出现的位置。start：检索起始位置。（会将正则表达式当做字符串检索）</li>
-        <li>lastIndexOf(str,start)：返回字符串在文本中最后一次出现的位置。</li>
+        <li>indexOf(str,start)：从左往右检索，返回字符串首次出现的位置。start：检索起始位置。（会将正则表达式当做字符串检索）</li>
+        <li>lastIndexOf(str,start)：从右往左检索，返回字符串首次出现的位置。</li>
         <li>search()：返回字符串在文本中首次出现的位置。（不能指定检索的起始位置，可以解析正则表达式）</li>
       </ul>
       <p>截取字符串：</p>
       <ul>
         <li>slice(start,end)：支持传入负数</li>
         <li>substring(start,end)：不支持传入负数</li>
-        <li>substr(start,leng)：len：截取的字符长度，如果不传则截取从其实位置到结尾</li>
+        <li>substr(start,len)：len：截取的字符长度，如果不传则截取从其实位置到结尾</li>
       </ul>
       <ul>
         <li>replace()：用一个字符串替换指定字符串。默认只匹配第一个，要想匹配多个，使用正则表达式</li>
         <li>toUpperCase()：转化成大写</li>
         <li>toLowerCase()：转化成小写</li>
-        <li>concat(str1,str2,...)：连接两个或多个字符串</li>
+        <li>concat(str1,str2,...)：连接两个或多个字符串(与数组的concat使用方法类似)</li>
         <li>trim()：删除字符串两端的空白符</li>
         <li>charAt(num)：返回指定下标的的字符</li>
         <li>charCodeAt(num)：返回指定下标的字符的编码</li>

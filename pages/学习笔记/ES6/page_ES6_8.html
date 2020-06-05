@@ -31,6 +31,7 @@
         /*
           1.call和apply可以用来重新定义函数的执行环境，即this的指向
           2.call和apply是为了改变函数运行时的context，也就是函数内部this的指向
+          3.call的性能优于apply
         */
         User.call(this,name,psd);
         this.level=level;
@@ -97,6 +98,8 @@
       //1.找出数组中的最大和最小值 ,call的性能相对来说优于apply
       console.time('A');
       console.log(Math.max.apply(this,arr1));
+      console.log(Math.max(...arr1));
+      
       console.timeEnd('A');
       console.time('B');
       console.log(Math.max.call(this,...arr1));
@@ -104,6 +107,7 @@
       console.log(Math.max(...arr1)); //有了ES6语法好像不用再重新this指向就能用
       
       console.log(Math.min.apply(this,arr1));
+      console.log(Math.min(...arr1));
       
       //2.写一个连接两个数组的方法(不能使用js默认方法)
       Array.prototype.push.apply(arr1,arr2)

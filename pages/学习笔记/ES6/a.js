@@ -15,7 +15,7 @@ export function sum2(...arr) {
 export class User{
   constructor(){}
   say(){
-    alert('hello');
+    console.log('hello');
   }
 }
 

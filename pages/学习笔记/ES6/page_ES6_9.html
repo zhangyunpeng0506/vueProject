@@ -17,8 +17,9 @@
       Promise.all([
         createPromise('../../../data/1.txt'),
         createPromise('../../../data/2.txt')
-      ]).then(res=>{ //res是一个数组，对应传入的第几个promise的返回值
-        let [arr1,arr2]=res;
+      // ]).then(res=>{ //res是一个数组，对应传入的第几个promise的返回值
+      //   let [arr1,arr2]=res;
+      ]).then(([arr1,arr2])=>{  //直接解构
         console.log(arr1);
         console.log(arr2);
       },e=>{
@@ -89,7 +90,7 @@
       }).then(
         res=>{
           console.log(res);
-          return `${res} 3` //return 的是一个Promise对象
+          return `${res} 3` //return 的是一个Promise对象，等价于return Promise.resolve(`${res} 3`)
         }
       ).then(res=>{
         console.log(res);
@@ -97,6 +98,11 @@
       }).catch(e=>{
         console.log(e);
       })
+
+      /*总结: 
+        1.retun x 等价于 return Promise.resolve(x)
+        2.throw x 等价于 return Promise.reject(x)
+       */
     </script>
   </body>
 </html>
