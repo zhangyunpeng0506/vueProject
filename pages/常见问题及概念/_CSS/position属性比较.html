@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>position属性比较</title>
+
+  <style type="text/css">
+    .parent{
+      width: 200px;
+      height: 300px;
+      background-color: red;
+      overflow-y: auto;
+    }
+    .child{
+      position: sticky;
+      width: 100px;
+      height: 100px;
+      top: 50px;
+      background-color: chartreuse;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+      <p>static:</p>
+      <p>relative:相对于原来的位置定位（相对定位）</p>
+      <p>absolute:相对于最近不为static的父元素定位（绝对定位）</p>
+      <p>fixed:相对于浏览器窗口固定定位（固定定位）</p>
+      <div class="child"></div>
+      <p>sticky:在屏幕范围时，该元素的位置并不受到定位影响（top、left等无效），当元素的位置要移出偏移范围时，根据设置的top、left等属性成固定位置的效果
+        <div>1.不脱离文档流</div>
+        <div>2.当元素在容器中被滚动超过指定的偏移值时，元素在容器内固定在指定位置
+          (child的top值是50px,刚进来时top值是大于50px的，所以其显示方式和其他元素一样，当滚动条滚动top值到达50px时，该样式起作用了)
+        </div>
+        <div>元素的偏移是相对于离他最近的具有滚动框的祖先元素，如果祖先都不可滚动，那么是相对于viewport来计算元素的偏移量</div>
+      </p>
+  </div>
+</body>
+</html>
