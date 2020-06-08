@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垂直居中</title>
+  <style type="text/css">
+    .content{
+      height: 300px;
+      width: 300px;
+      background-color: blanchedalmond;
+      margin: 5px;
+    }
+    .child{
+      width: 100px;
+      height: 50px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <!--这里可用top:calc(50% - 25px)、top:50%;margin:-25px、transfrom:translateY(-50%)
+        这里推荐第三种，因为child的高度有时是不确定的
+        如果是行内元素或行内块级元素则不行-->
+    <div class="child" style="position: relative;margin: 0 auto;top: calc(50% - 25px);"></div>
+  </div>
+  <div class="content" style="display: flex;justify-content: center;align-items: center;">
+    <div class="child"></div>
+  </div>
+
+  <div class="content" style="display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;">
+    <span class="child" style="display: inline-block;"></span>
+  </div>
+
+  <div class="content" style="line-height: 300px;text-align: center;">
+    <span class="child" style="display: inline-block;vertical-align: middle;height: auto;">123</span>
+  </div>
+
+  <!--图片垂直居中:弹性布局/box-->
+  <div style="width: 800px;height: 400px;background-color: rosybrown;margin: 5px;">
+    <img src="../../../imgs/vue双向绑定.png" alt="双向绑定"/>
+  </div>
+</body>
+</html>

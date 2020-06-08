@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>BFC</title>
+    <style type="text/css">
+      .content{
+        width: 70px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    </style>
   </head>
   <body>
     <p>何为BFC：</p>
@@ -31,5 +39,8 @@
       <div style="width:100px;height:100px;background-color:greenyellow;margin: 10px;"></div>
       <div style="width:100px;height:100px;background-color:blue;margin: 10px;"></div>
     </div>
+
+    <!--溢出处理-->
+    <div class="content">这里我要对溢出的文字做处理，哈哈哈哈</div>
   </body>
 </html>

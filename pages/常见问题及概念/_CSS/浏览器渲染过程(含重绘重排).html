@@ -32,6 +32,17 @@
         <div>回流(reflow)：页面发生布局变化，页面需要倒回去重新渲染，这个回退的过程叫回流</div>
         <div>重绘(repaint)：颜色背景色，visibility等不影响布局的属性变化，需要重新绘制颜色，但页面布局未发生变化</div>
       </div>
+      <p>
+        浏览器自己优化：浏览器会维护一个队列，把所有会引起回流重绘的操作放入这个队列，等队列中的操作到达一定数量或者到了一定时间间隔，<br/>
+        浏览器就会flush队列，进行一个批处理。这样就会让多次回流和重绘变成一次。
+      </p>
+      <p>减少重绘和重排的方法：</p>
+      <ul>
+        <li>直接改变元素的className</li>
+        <li>先将会引发重绘和重排的元素设置display：none；然后操作，设置完成后 display：block</li>
+        <li>cloneNode和replaceChild</li>
+        <li>absolute、fixed脱离文档流</li>
+      </ul>
     </div>
     <script>
       

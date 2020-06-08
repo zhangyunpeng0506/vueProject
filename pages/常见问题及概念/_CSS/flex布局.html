@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex布局</title>
+</head>
+<body>
+  <div style="display: flex; align-items: baseline;width: 500px;">
+    <div style="padding: 20px;flex-grow: 1;">123</div>
+    <div style="padding: 30px;order: -1;flex-shrink: 0;">发多发发啊啊啊啊啊啊啊啊啊啊<br>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+    <div>dafafafd</div>
+  </div>
+  <script>
+    //注意：设置flex布局后，子元素的float、clear和vertical-align属性将失效
+    //容器的属性：
+    //flex-direction:row|row-reverse|columns|colums-reverse
+    //flex-wrap:wrap|nowrap|wrap-reverse
+    //flex-flow:(flex-direction和flex-wrap的简写形式)
+    //justify-content:flex-start|flex-end|center|space-around(每个项目两侧间隔相等，因此项目之间的间隔比项目与边框之间大一倍)|space-between
+    //align-items:flex-start|flex-end|center|baseline(项目第一行文字的基线对齐)|stretch(默认值，未设置高度将自动沾满整个容器)
+    //align-content:多根轴线的对齐方式
+    //项目的属性
+    //order:项目的排列顺序，数值越小越靠前，默认是0
+    //flex-grow:项目放大比例，默认是0，即如果有剩余空间，也不放大 //可设置该值来实现均分
+    //flex-shrink:项目缩小比例，默认是1，即如果空间不足，将缩小
+    //flex-basis:在分配多余空间之前，项目占据的主轴空间，默认为auto
+    //flex:flex-grow|flex-shrink|flex-basis的缩写（建议优先使用）
+    //align-self:auto(默认继承父元素align-items属性)|flex-start|flex-end|center|baseline|stretch
+  </script>
+</body>
+</html>
