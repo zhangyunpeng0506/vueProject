@@ -41,10 +41,11 @@
   <p>2.伪元素</p>
   <p>3.设置父元素属性，使其形成一个BFC空间（overflow设置除visible以外的值，diplay：inline-block/flex/inline-flex等）</p>
 
-
   <div class="parent">
     <div class="child">我是一个粉刷匠</div>
     <div style="clear: both;"></div>
+    <!--clear：left(当前元素左边不允许有浮动元素)|right|both
+        clear始终无法处理他后面的元素，因此清除浮动要放在最后-->
   </div>
   <br/>
   <div class="parent2">

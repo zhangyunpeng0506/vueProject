@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css布局</title>
+
+  <style type="text/css">
+    .main::after{ /*清除浮动*/
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .left{
+      float: left;
+      width: 300px;
+      height: 100px;
+      background-color:yellowgreen;
+    }
+    .right{
+      float: right;
+      width: 300px;
+      height: 100px;
+      background-color: yellowgreen;
+    }
+    .content{
+      margin-left: 300px;
+      margin-right: 300px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!--三栏布局
+    1.float：用的最多；注意清除浮动，而且左右浮动部分都要写在前面
+    2.position：不太适用于页面布局
+    3.table：不利于搜索引擎抓取信息
+    4.flex：只支持到ie9以上-->
+  <div class="main">
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="content">
+      <h2>三栏布局————float</h2>
+    </div>
+  </div>
+  <div style="display: table;">
+    <div style="display: table-cell;width: 300px;height: 400px;background-color: silver;"></div>
+    <div style="display: table-cell;background-color: springgreen;">
+      <h2>三栏布局————table实现</h2>
+    </div>
+    <div style="display: table-cell;width: 300px;height: 400px;background-color: silver;"></div>
+  </div>
+</body>
+</html>
