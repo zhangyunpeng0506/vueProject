@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>块级元素和行内元素</title>
+
+  <style type="text/css">
+    .parent{
+      background: red;
+      margin: 5px;
+    }
+    .child{
+      background-color: greenyellow;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <p>行内元素：</p>
+  <ul>
+    <li>与其他元素并排</li>
+    <li>不能设置宽高，默认宽度就是文字的宽度</li>
+    <li>margin属性垂直方向上失效</li>
+    <!--可替换元素的展现效果不是由css来控制的，这些元素是一种外部对象，它们外观的渲染是独立于css的
+        css可以影响可替换元素的位置，但不会影响可替换元素的自身的内容
+        这些元素有一个共性，就是他们的内容都不是在标签内添加文本
+        性质同设置了display:inline-block的元素一致-->
+    <li>img是inline元素，但是可以设置高度和宽度（可替换元素）</li>
+  </ul>
+  <p>块级元素：</p>
+  <ul>
+    <li>霸占一行，不能与其他任何元素并列</li>
+    <li>能接受宽高，如果不设置宽高，那么宽度默认是父级的100%</li>
+    <li>p是块级元素，是文本级标签，但是只能放文字图片和表单元素</li>
+  </ul>
+  <p>行内块级元素：</p>
+  <ul>
+    <li>与其他元素并排</li>
+    <li>宽高等属性都可设置</li>
+  </ul>
+
+  <p>脱离文档流的方式：浮动、定位（绝对定位、固定定位）</p>
+  <p>浮动元素：
+    1.浮动元素的display=block因此即使原来是行内元素，设置了浮动后，垂直方向上margin又有效果了
+    2.浮动元素字围效果（因为浮动元素脱离了文档流(相对于盒模型)，但是没有脱离文本流(相对于文本)，文字图片等会认同浮动元素所占据的区域）</p>
+
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+
+  <!--字围效果-->
+  <div style="float: left;width:50px;height: 50px;background-color: rosybrown;"></div>
+  <p><img src="../../../imgs/vue双向绑定.png"></p>
+</body>
+</html>
