@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多行文本省略</title>
+
+  <style>
+    .oneLine{
+      overflow: hidden; /*当文字超出时隐藏*/
+      text-overflow: ellipsis;
+      white-space:nowrap;
+      width: 150px;
+    }
+
+    .lines{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 150px;
+
+      display: -webkit-box; /*将对象作为弹性伸缩盒子模型显示*/
+      -webkit-box-orient: vertical;  /*设置或检索伸缩盒对象的子元素排列方式*/
+      -webkit-line-clamp: 3;  /*设置在第几行省略*/
+    }
+
+    .lines2{
+      width: 150px;
+      overflow: hidden;
+      max-height: 40px; /*想几行省略就设置高度是line-height的几倍*/
+      line-height: 20px;
+      position: relative;
+    }
+
+    .lines2::after{
+      content: '...';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <!--单行文本省略-->
+  <div class="oneLine">
+    我是一段很长很长的文字，哈哈哈哈哈哈啊我是一段很长很长的文字，哈哈哈哈哈哈啊
+  </div>
+  <br>
+
+  <!--多行文本省略（一）————webkit-box-->
+  <div class="lines">
+    我是一段很长很长的文字，哈哈哈哈哈哈啊我是一段很长很长的文字，哈哈哈哈哈哈啊
+  </div>
+  <br>
+
+  <!--多行文本省略（二）————伪元素-->
+  <div class="lines2">
+    我是一段很长很长的文字，哈哈哈哈哈哈啊我是一段很长很长的文字，哈哈哈哈哈哈啊
+  </div>
+</body>
+</html>

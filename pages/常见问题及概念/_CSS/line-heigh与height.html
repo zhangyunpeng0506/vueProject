@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>line-height与height</title>
+
+  <style>
+    .test{
+      background-color: gray;
+      border: 1px solid greenyellow;
+      font-size: 18px;
+      height: calc(18 * 1.2);
+    }
+  </style>
+</head>
+<body>
+  <p>line-height取值：</p>
+  <ul>
+    <li>normal:默认（1.2）</li>
+    <li>%:百分比值*font-size</li>
+    <li>length:设置固定的行距</li>
+    <li>number:number值*font-size</li>
+    <li>inherit:继承（除了number和normal继承的是倍率，其他的几种方式都是继承计算后的值）</li>
+  </ul>
+  <img src="../../../imgs/line-height.png" alt="line-height">
+  <div class="test">
+    测试
+  </div>
+
+  <script>
+    //1.如果div不设置高度，div的高度根据line-height的大小而变化，且文字垂直居中
+  </script>
+</body>
+</html>
