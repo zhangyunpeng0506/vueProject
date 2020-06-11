@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内存泄露</title>
+</head>
+<body>
+  <h3>简介：</h3>
+  <p>内存泄露是许多问题的根源：反应迟缓，高延迟，崩溃以及其他问题</p>
+  <h3>概念：</h3>
+  <p>不在用到的内存，没有及时释放</p>
+  <h3>js两种回收机制</h3>
+  <p>标记清除</p>
+  <p>引用计数</p>
+
+  <p>Node与其他语言不同的一个地方就是限制了js所能使用的内存。原因：V8的垃圾回收机制限制；
+    由于V8需要保证js应用逻辑与垃圾回收器看到的不一样，V8在执行垃圾回收时会阻塞js应用逻辑，直到垃圾回收结束再重新执行js
+    应用逻辑，这种行为称为全停顿，停顿时浏览器会失去对用户的响应，造成假死现象
+  </p>
+
+  <button id="button">按钮</button>
+  <div id="node"></div>
+  <script>
+    /*常见的内存泄露*/
+
+    //1.意外的全局变量（解决办法：使用严格模式）
+    /* 严格模式：
+        1.不允许使用未声明的变量;
+        2.不允许删除变量、对象或函数（delete x）;
+        3.不允许变量重名；
+        4.不允许八进制
+        5.不允许转义字符
+        6.不允许只读属性赋值
+        7.不允许删除一个不能删除的属性
+        8.变量名不能使用特殊含义的字符串（eval、arguments等）
+        9.禁止this指向全局对象
+        10.作用域eval()创建的变量不能调用
+    */
+    /* eval(string);  会将传入的字符串当做JavaScript代码进行执行
+        返回值：通过计算string得到的值
+    */
+    function foo(){
+      // 'use strict' //使用严格模式时，控制台就会报错bar not define
+      bar="something" //未使用严格模式时，相当于window.bar="something"
+      this.bar2="anything"  //未使用严格模式，相当于window.bar2="anything"
+    }
+    foo();
+
+    //2.被遗忘的计时器或回调函数
+    function getData(){}
+    var someResource=getData()
+    setInterval(function(){
+      let node=document.getElementById("node");
+      if(node){
+        node.innerHTML=someResource
+      }
+    },1000);
+
+    //3.脱离DOM的引用
+    let elements={
+      button:document.getElementById('button')
+    }
+    function removeBtn(){
+      document.body.removeChild(document.getElementById('button'))
+      //此时，仍旧存在一个全局的button引用
+      //elements字典。button元素仍旧在内存中
+    }
+
+    //4.闭包
+  </script>
+</body>
+</html>
