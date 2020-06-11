@@ -90,6 +90,11 @@
       let wkmap=new WeakMap();
       wkmap.set(obj1,arr1);
       console.log(wkmap);
+      
+      let element=document.getElementById('example');
+      wkmap.set(element,'something'); //WeakMap和WeakSet里的引用都是弱引用，不会计入垃圾回收机制，也就是说一旦消除引用，这个键值对会自动消失
+      wkmap.get(element)
+      
 
       /*****************综合练习：数组去重*****************/
       const arr=[23,45,2,5,8,12,21,45,676,21,2,34,23];

@@ -43,6 +43,20 @@
         <li>cloneNode和replaceChild</li>
         <li>absolute、fixed脱离文档流</li>
       </ul>
+
+      <p>defer和async是脚本异步加载的两种方式</p>
+      <div>
+        1.没有defer或async的时候浏览器会立即加载并执行指定脚本；
+        2.有async，加载和渲染后续文档元素的过程将和script的加载与执行并行进行（异步）
+        3.有defer，加载后续文档元素的过程将和script的加载并行进行（异步），但是script的执行要在所有元素解析完成之后，DOMContentLoaded事件触发之前
+      </div>
+
+      <p>白屏与FOUC（无样式内容闪烁）</p>
+      <div>产生原因与浏览器的渲染机制有关
+        浏览器等待html和css全部加载完后再渲染（白屏问题）；
+        先显示已加载的HTML，等到css加载完成后重新对内容添加样式（FOUC问题）
+        解决办法:将样式放在header中
+      </div>
     </div>
     <script>
       
