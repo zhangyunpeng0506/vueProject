@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托（事件代理）</title>
+</head>
+<body>
+  <h3>概念：</h3>
+  <p>事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件</p>
+  <h3>为什么用事件委托</h3>
+  <div>假设场景，有100个li要添加click事件，如果给每个都添加————不断与dom交互，引起重绘重排，每个函数都是对象会占用内存</div>
+  <h3>原理：利用事件冒泡，给父级添加click事件，委托父级代为执行事件</h3>
+
+  <div id="box">
+    <input type="button" id="add" value="添加">
+    <input type="button" id="remove" value="删除">
+    <input type="button" id="edit" value="修改">
+    <input type="button" id="search" value="查询">
+  </div>
+
+  <div id="box2" onclick="boxClick()">
+    <input type="button" id="test" value="dom0事件" onclick="test()">
+  </div>
+
+  <div id="box3" onclick="boxClick()">
+    <input type="button" id="test3" value="dom2事件" onclick="test()">
+  </div>
+
+  
+  <div id="wrapDiv">wrapDiv
+    <p id="innerP">innerP
+        <span id="textSpan">textSpan</span>
+    </p>
+</div>
+
+  <script>
+    //阻止冒泡事件 event.stopPropagation()
+    //取消默认事件 event.preventDefault()
+
+    /*
+      js中，绑定的事件默认执行时间是在冒泡阶段执行，而非在捕获阶段，这也是为什么当父类和子类都绑定了某事件，会先调用
+      子类绑定的事件，后调用父类的事件（事件默认都是先捕获后冒泡）
+
+      事件流：
+      冒泡事件流：DOM树的叶子到根
+      捕获事件流：DOM树的根到叶子
+
+      事件模型：
+      DOM0级模型：又称为原始事件模型，在该模型中，事件不会传播，即没有事件流的概念
+      IE事件模型：
+      DOM2级模型：属于w3c标准模型。在该事件模型中，一次事件共有3个过程：事件捕获(根→叶子)、事件处理(触发监听函数)、事件冒泡(叶子→根)
+
+      addEventLinstener(event,function,useCapture)  //useCapture用于指定是否在捕获阶段进行处理(父元素)
+      removeEventLinster(event,function,useCapture)   //不能移除匿名函数
+      可以添加多个事件，不会相互覆盖
+      使用匿名函数调用带参数的函数 addEventLinster(event,function(){add(sum1,sum2)},userCapture)
+    */
+    window.onload=function(){
+      let box = document.getElementById('box')
+      box.onclick=function(){
+        let target = event.target||event.srcElement;
+        switch(target.getAttribute('id')){
+          case 'add':console.log('添加');break;
+          case 'remove':console.log('删除');break;
+          case 'edit':console.log('修改');break;
+          case 'search':console.log('查询');break;
+        }
+      }
+
+      let box3 = document.getElementById('box3');
+      box3.addEventListener('click',childClick,true);
+    }
+
+    function childClick(){
+      console.log('DOM2级事件');
+    }
+
+    function test(){
+      console.log('DOM0级事件');
+    }
+    function boxClick(){
+      console.log('父级事件');
+    }
+
+    window.addEventListener("click", function(e){
+        console.log("window 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
+ 
+    document.addEventListener("click", function(e){
+        console.log("document 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
+ 
+    document.documentElement.addEventListener("click", function(e){
+        console.log("documentElement 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
+ 
+    document.body.addEventListener("click", function(e){
+        console.log("body 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
+ 
+    wrapDiv.addEventListener("click", function(e){
+        console.log("wrapDiv 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
+ 
+    innerP.addEventListener("click", function(e){
+        console.log("innerP 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
+ 
+    textSpan.addEventListener("click", function(e){
+        console.log("textSpan 捕获", e.target.nodeName, e.currentTarget.nodeName);
+    }, true);
+
+  </script>
+</body>
+</html>

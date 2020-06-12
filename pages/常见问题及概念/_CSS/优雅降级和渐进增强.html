@@ -3,8 +3,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>优雅降级和渐进增强</title>
+
+  <style>
+    .transition1{/*渐进增强写法*/
+      -webkit-transition: all .5s;
+      -moz-transition: all .5s;
+      -o-transition: all .5s;
+      transition: all .5s;
+    }
+    .transition2{/*优雅降级写法*/
+      transition: all .5s;
+      -o-transition: all .5s;
+      -moz-transition: all .5s;
+      -webkit-transition: all .5s;
+    }
+  </style>
 </head>
 <body>
-  <div>https://www.cnblogs.com/web-wjg/p/7240985.html</div>
+  <p>优雅降级：一开始就构建站点的完整功能，然后针对浏览器测试修复</p>
+  <p>渐进增强：一开始就针对低版本浏览器进行构建页面，完成基本的功能，然后再针对高级浏览器进行效果、交互追加功能达到更好的体验</p>
+  <p>主要是针对既支持前缀css3，又支持正常css3的浏览器两种写法会有差异（因为有的属性在前缀css3和css3中样式是有差异的，如：border-raduis）</p>
 </body>
 </html>
