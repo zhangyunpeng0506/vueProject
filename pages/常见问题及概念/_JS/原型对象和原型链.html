@@ -12,7 +12,7 @@
       <ul>
         <li>函数才有prototype（显式原型）属性，对象没有这个属性，对象对应的是__proto__（隐式原型）属性</li>
         <li>函数广义上来说有__proto__这个属性，因为函数也属于对象，只要是对象就有__proto__属性，只不过函数的__proto__属性是Function.prototype</li>
-        <li>实例是通过new一个构造函数生成</li>
+        <li>实例是通过new一个构造函数生成（箭头函数不能new一个实例）</li>
         <li>原型对象也是对象，也有__proto__,他的__proto__还是原型对象</li>
         <li>构造函数中定义的方法，实例化后并不一样，而原型对象prototype中定义的方法相等（指向同一地址）</li>
         <li>添加了原型方法后，实例对象person1和构造函数Person中并没有直观体现，反而在person1.__proto__和Person.prototype中显示了出来</li>

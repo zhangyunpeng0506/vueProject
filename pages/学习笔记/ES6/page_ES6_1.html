@@ -48,13 +48,14 @@
             var str='a';
         }
         console.log(str); // a
-        //没有块级作用域将会引发的问题:for的块级
+
         for(var i=0;i<5;i++){
             console.log(i);
         }
         //结果：0 1 2 3 4
         //因为for循环内的函数被立即执行了
 
+        //没有块级作用域将会引发的问题:for的块级
         var btn1=document.getElementsByClassName('btn1');
         var btn2=document.getElementsByClassName('btn2');
         var btn3=document.getElementsByClassName('btn3');

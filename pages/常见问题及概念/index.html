@@ -5,6 +5,9 @@
   <title>复习用</title>
 </head>
 <body>
+  <div>
+    <div></div>
+  </div>
   <script>
     //css3新特性（css新属性）
     //css布局
@@ -83,6 +86,27 @@
     //谈谈对vue设计原则的理解
     //MVC、MVP、MVVM的理解
     //vue性能优化方法
+
+    class User{
+      constructor(name,age){
+        this.name=name;
+        this.age=age;
+      }
+
+      say(what){
+        console.log(`${this.name}说：${what}`);
+      }
+    }
+
+    class SuperUser extends User{
+      constructor(name,age,lev){
+        super(name,age);
+        this.lev=lev;
+      }
+    }
+
+    let superUser = new SuperUser('zyp',25)
+    superUser.say('hello')
   </script>
 </body>
 </html>
