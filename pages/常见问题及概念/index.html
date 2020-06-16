@@ -5,7 +5,20 @@
   <title>复习用</title>
 </head>
 <body>
-  
+  <!-- 练习 -->
+  <!-- 垂直居中 -->
+  <div style="width: 100px;height: 100px;background-color: aliceblue;">
+    <div style="width: 70px; height: 70px;background-color:darkcyan;"></div>
+  </div>
+
+  <!-- 多行文本省略 -->
+  <div>
+    <div>我是一个特别特别长的一段文字，哈哈哈哈，啦啦啦，别长的一段文字，哈哈哈哈，啦啦啦，别长的一段文字，哈哈哈哈，啦啦啦，别长的一段文字，哈哈哈哈，啦啦啦</div>
+  </div>
+
+  <!-- 画三角形 -->
+  <div></div>
+
   <script>
     //css3新特性（css新属性）
     //css布局
@@ -18,14 +31,11 @@
     //JS事件机制
     //websocket
 
-    //说说前端中的事件流
     //写个函数，可以转化下划线命名为驼峰
     //string的startwith和indexof的区别
     //获取对象的属性
-    //事件模型DOM0 / DOM2
     //图片懒加载和预加载
     //js控制加在一张图片，加载完后再加载下一张
-    //mouseover和mouseenter区别
     //js的new操作符做了哪些事情
     //改变函数内部this指针指向的函数（bind、apply、call的区别）
     //自己实现一个bind函数
@@ -46,11 +56,9 @@
     //去除字符串首尾空格
     //性能优化
     //js语言特性
-    //js命名方式
     //js全排列
-    //null==undefined，为什么
     //this的指向哪几种
-    //暂停四驱
+    //暂停死区
     //游戏卡顿的可能原因
     //什么是按需加载
     //virtual dom
@@ -62,7 +70,6 @@
     //js实现轮播，两个轮播
     //实现一个计算一年中多少周的方法
     //new 操作符原理
-    //arguments
     //Eventloop
     //http状态码
     //ajax
@@ -84,6 +91,27 @@
     //谈谈对vue设计原则的理解
     //MVC、MVP、MVVM的理解
     //vue性能优化方法
+
+    class User{
+      constructor(name,age){
+        this.name=name;
+        this.age=age;
+      }
+
+      say(what){
+        console.log(`${this.name}说：${what}`);
+      }
+    }
+
+    class SuperUser extends User{
+      constructor(name,age,lev){
+        super(name,age);
+        this.lev=lev;
+      }
+    }
+
+    let superUser = new SuperUser('zyp',25)
+    superUser.say('hello')
   </script>
 </body>
 </html>

@@ -53,6 +53,14 @@
       /*结论：
        *1.除了null之外其他的基本数据类型检测正确，检测null的结果为object
        *2.引用数据类型除了function和object外检测结果都不对（都为object）
+
+       typeof之所以会判定null为Object类型，是因为JavaScript数据类型在底层都是以二进制的形式表示，二进制的前三位是0会被typeof
+       判定为Object类型，而null的二进制位恰好都是0，因此，null被误判为Object类型
+       000-对象
+       1-整列
+       010-双精度类型，双精度数字
+       100-字符串
+       110-布尔类型
        */
       console.log('----------------typeof----------------');
       console.log(`检测Number：${ typeof 1 }`);
@@ -122,6 +130,10 @@
       console.log(`检测Array：${ a.call([]) }`);
       console.log(`检测Object：${ a.call({}) }`);
       console.log(`检测Function：${ a.call(function(){}) }`);
+
+      // 思考：为什么null==undefined
+      // undefined表示一个变量自然的，最原始的状态值，
+      // null表示被人为的设置为空的对象，而不是原始的状态
     </script>
   </body>
 </html>

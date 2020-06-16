@@ -45,15 +45,22 @@
       冒泡事件流：DOM树的叶子到根
       捕获事件流：DOM树的根到叶子
 
+      DOM事件流（前端事件流）有三个阶段：事件捕获阶段、目标阶段、事件冒泡阶段
+
+      mouseover：会冒泡
+      mouseout：会冒泡
+      mouseenter：不会冒泡
+      mouseleave：不会冒泡
+
       事件模型：
-      DOM0级模型：又称为原始事件模型，在该模型中，事件不会传播，即没有事件流的概念
+      DOM0级模型：又称为原始事件模型，在该模型中，事件不会传播，即没有事件流的概念  btn.onclick=function(){}
+      DOM2级模型：属于w3c标准模型。在该事件模型中，一次事件共有3个过程：事件捕获(根→叶子)、事件处理(触发监听函数)、事件冒泡(叶子→根) btn.addEventLinstener()
       IE事件模型：
-      DOM2级模型：属于w3c标准模型。在该事件模型中，一次事件共有3个过程：事件捕获(根→叶子)、事件处理(触发监听函数)、事件冒泡(叶子→根)
 
       addEventLinstener(event,function,useCapture)  //useCapture用于指定是否在捕获阶段进行处理(父元素)
-      removeEventLinster(event,function,useCapture)   //不能移除匿名函数
+      removeEventLinstener(event,function,useCapture)   //不能移除匿名函数
       可以添加多个事件，不会相互覆盖
-      使用匿名函数调用带参数的函数 addEventLinster(event,function(){add(sum1,sum2)},userCapture)
+      使用匿名函数调用带参数的函数 addEventLinstener(event,function(){add(sum1,sum2)},userCapture)
     */
     window.onload=function(){
       let box = document.getElementById('box')
