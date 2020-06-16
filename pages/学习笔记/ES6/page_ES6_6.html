@@ -20,13 +20,13 @@
         <li>substr(start,len)：len：截取的字符长度，如果不传则截取从其实位置到结尾</li>
       </ul>
       <ul>
-        <li>replace()：用一个字符串替换指定字符串。默认只匹配第一个，要想匹配多个，使用正则表达式</li>
+        <li>replace(//g,Fn)：用一个字符串替换指定字符串。默认只匹配第一个，要想匹配多个，使用正则表达式</li>
         <li>toUpperCase()：转化成大写</li>
         <li>toLowerCase()：转化成小写</li>
         <li>concat(str1,str2,...)：连接两个或多个字符串(与数组的concat使用方法类似)</li>
         <li>trim()：删除字符串两端的空白符</li>
         <li>charAt(num)：返回指定下标的的字符</li>
-        <li>charCodeAt(num)：返回指定下标的字符的编码</li>
+        <li>charCodeAt(num)：返回指定下标的字符的ASCII编码</li>
         <li>split(flag)：在指定符号处分割字符串</li>
       </ul>
       <h2>ES6拓展方法：</h2>
@@ -62,6 +62,31 @@
       console.log(str.padEnd(5)); //'abc  '
       console.log(`模板标签${str}`);
       console.log(`另一个模板标签${show()}`);
+
+      /*思考题*/
+      // 1.将字符串的大写转化为小写，小写转化为大写
+      let tesStr="ZhangYunPeng张云鹏！哈哈*100,HAHA"
+      // 方法一：(高阶函数)
+      let res1 = tesStr.split('').reduce((prev,cur,curIndex)=>{
+        let _PREV=prev.toUpperCase();
+        let _prev=prev.toLowerCase();
+        let _CUR=cur.toUpperCase();
+        let _cur=cur.toLowerCase();
+        if(curIndex===1){
+          return (prev===_PREV?_prev:_PREV) + (cur===_CUR?_cur:_CUR);
+        }else{
+          return prev + (cur===_CUR?_cur:_CUR);
+        }
+      })
+      console.log(res1);
+      // 方法二：(正则表达式)
+      let res2 = tesStr.replace(/[a-zA-Z]/g,content=>{  //replace后跟的回调函数会对每一次符合正则的值进行处理
+        // a)
+        // return content === content.toUpperCase()?content.toLowerCase():content.toUpperCase();
+        // b)
+        return (content.charCodeAt()>='A'.charCodeAt()&&content.charCodeAt()<='Z'.charCodeAt())?content.toLowerCase():content.toUpperCase()
+      })
+      console.log(res2);
       
     </script>
   </body>
