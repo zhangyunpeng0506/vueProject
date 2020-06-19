@@ -32,8 +32,9 @@
           1.call和apply可以用来重新定义函数的执行环境，即this的指向
           2.call和apply是为了改变函数运行时的context，也就是函数内部this的指向
           3.call的性能优于apply
+          4.bind也可以改变this的指向，但是bind返回的是一个函数，必须调用才会被执行，传参方式与call一致
         */
-        User.call(this,name,psd);
+        User.call(this,name,psd); //执行this.name=name,this.psd=psd；但是改变了User的this指向
         this.level=level;
       }
 

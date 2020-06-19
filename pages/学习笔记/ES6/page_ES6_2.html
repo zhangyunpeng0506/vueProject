@@ -20,6 +20,16 @@
     </div>
 
     <script>
+      /* js的new操作符做了那些事情？
+         new操作符创建了一个空对象，这个对象原型指向构造函数的prototype，执行构造函数后返回这个对象
+         function Fn(){}
+         1.创建一个空对象               let obj = new Object()
+         2.链接到原型                   obj.__proto__ = Fn.prototype
+         3.绑定this指向，执行构造函数    Fn.call(obj)
+         4.确保返回的是对象             fn = obj
+      */
+
+
       /**************箭头函数**************/
       const obj={
         test(){
