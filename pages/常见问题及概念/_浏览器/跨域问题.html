@@ -4,13 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <title>跨域问题</title>
+</head>
 <body>
-  <iframe id="linkHtml" src="http://127.0.0.1:8080/auto_web/" style="width: 100%;height: 500px;"/>
+  <!-- <iframe id="linkHtml" src="http://127.0.0.1:8080/auto_web/" style="width: 100%;height: 500px;"/> -->
 <script>
-  var ifr = document.getElementById("linkHtml");
-  ifr.onload = function(){
 
-  }
+  //同源：是指域名、协议、端口号相同
+
+  //非同源 
+  /*
+    1.cookie、localStorage和indexDB无法读取;
+    2.DOM无法获得
+    3.AJAX请求不能发送
+  */
+
+  /* 1.JSONP
+      a.要点：允许用户传递一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，
+        这样客户端就可以随意定制自己的函数来自动处理返回的数据了
+      b.JSONP的核心是动态添加script标签来调用服务器提供的js脚本（因为web页面上调用js文件不受跨域影响，而且但凡有src这个
+        属性的标签都拥有跨域的能力，比如<script>、<img>、<iframe>）
+      c.因此想通过纯web端跨域访问，就是设法把数据装进js格式的文件夹里，供客户端调用和进一步处理
+      d.ajax和jsonp本质上是不同的东西;ajax是通过XMLHttpRequest获取非本页内容，而jsonp是动态添加<script>标签来调用服务器提供的js
+    总结：客户端直接调用js，这个js是由服务端提供
+    局限性：只支持get，即使将jq ajax请求的type改为post，发送请求时依然是以get方式
+
+    2.CORS（跨域资源共享）
+      原理：使用自定义的HTTP头让浏览器与服务器进行沟通，从而决定请求响应是成功还是失败。需要在后台加上请求头来允许跨域请求
+
+    3.window.domain 跨子域
+
+    4.window.name
+      在一个窗口的生命周期内，窗口载入的所有页面都是共享一个window.name，且都有读写权限
+      如何在同窗口去跳转不同域的页面————iframe
+    
+    5.HTML5的window.postMessage
+
+    6.webSocket
+  */
+  var jsonpFn=function(data){}
+
+  var url="www.baidu.com?a='123'&callback=jsonpFn"
+  var script=document.createElement('script')
+  script.setAttribute('src',url)
+  document.getElementsByTagName('head')[0].appendChild(script)
+  
 </script>
 </body>
 </html>
