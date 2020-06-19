@@ -37,6 +37,12 @@
   </style>
 </head>
 <body>
+
+  <!--
+    问题：什么是浮动，为什么要清除浮动
+    答：浮动即元素设置了float，因为一旦设置了浮动，就有可能引起父级元素的塌陷
+  -->
+
   <p>1.在父盒子里最后增加一个div，然后设置clear:both</p>
   <p>2.伪元素(在设置伪元素的元素内部插入伪元素)</p>
   <p>3.设置父元素属性，使其形成一个BFC空间（overflow设置除visible以外的值，diplay：inline-block/flex/inline-flex等）</p>
