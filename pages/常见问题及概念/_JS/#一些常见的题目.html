@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>一些常见的js题目</title>
+  </head>
+  <body>
+    <script>
+      /* 1.用setTimeout实现setInterval
+         思路：递归
+      */
+      function mySetInterval(fn,time){
+        function interval(){
+          setTimeout(interval, time);
+          fn()
+        }
+        setTimeout(interval,time);
+      }
+      mySetInterval(function(){console.log(1)},1000)
+
+      /* 2.
+      
+      */
+
+      /* 3.
+      
+      */
+    </script>
+  </body>
+</html>

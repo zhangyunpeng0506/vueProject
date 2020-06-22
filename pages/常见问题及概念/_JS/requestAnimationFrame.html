@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>requestAnimationFrame</title>
+  </head>
+  <body>
+    实现流畅的动画效果
+
+    setTimeout实现的动画在某些低端机上会出现卡顿、抖动的现象
+    原因: 1.setTimeout执行时间不确定，因为在js中setTimeout任务被放进异步队列，只有主线程任务执行完才会去检查改队列
+          2.不同设备屏幕刷新率可能不一样，但是setTimeout只能设置一个固定的时间间隔
+
+    requestAnimationFrame最大优势是由系统来决定回调函数的执行时机，其次setTimeout实现的动画，当页面被隐藏或者最小化
+    仍会在后台执行动画任务，
+    <script>
+      
+    </script>
+  </body>
+</html>
