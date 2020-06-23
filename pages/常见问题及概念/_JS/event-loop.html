@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>event-loop</title>
+  </head>
+  <body>
+    1.javascript是单线程语言
+    2.单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务
+
+    1.所有同步任务都在主线程执行，形成一个执行栈
+    2.主线程之外还存在一个任务队列。只要异步任务有了运行结果，就在任务队列之中放置一个事件
+    3.一旦执行栈中的所有同步任务执行完毕，系统就会读取任务队列，这些任务进入执行栈开始执行
+    4.主线程不断重复上面第3步
+
+    主线程从任务队列中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为Event Loop(事件循环)
+  </body>
+</html>
