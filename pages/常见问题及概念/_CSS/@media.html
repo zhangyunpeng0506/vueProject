@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>@media</title>
+
+    <style>
+      .box1{
+        height: 100px;
+        width: 100px;
+        background-color: chartreuse;
+        transition: all 1s ease;
+      }
+      .box2{
+        height: 120px;
+        width: 120px;
+        background-color: crimson;
+      }
+
+      @media screen and (max-width:300px){
+        .box1:hover{
+          background-color: yellowgreen;
+          transform: scale(1.5) rotate(45deg);
+        }
+      }
+
+      @media screen and (max-width:500px){
+        .box2{
+          animation:mymove 1s ease infinite alternate
+        }
+      }
+
+      @keyframes mymove {
+        0%   {transform: scale(1);}
+        25%  {transform: scale(1.5);}
+        50%  {transform: scale(1);}
+        75%  {transform: scale(1.5);}
+        100% {transform: scale(1);}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1"></div>
+    <br>
+    <div class="box2"></div>
+    @media :针对不同的屏幕尺寸设置不同的样式
+    媒体类型：
+      all：所有设备
+      print：打印机，打印预览
+      screen：电脑屏幕，平板电脑，智能手机
+      speech：屏幕发声器等阅读设备
+  </body>
+</html>
