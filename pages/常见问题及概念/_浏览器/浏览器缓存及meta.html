@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!--
+      元数据是数据的数据信息
+      meta标签提供了HTML文档的元数据。元数据不会显示在客户端，但是会被浏览器解析
+      meta元素通常指定网页的描述，关键词，文件的最后修改时间，作者及其他元数据
+      元数据可以被使用（如何显示内容或重新加载页面），搜索引擎（关键词），或其他Web服务调用
+
+      1.meta标签通常位于head区域内
+      2.元数据通常以 名称/值 对出现
+      3.如果没有提供name属性，那么 名称/值 对中的名称将会采用http-equiv属性的值
+    -->
+
+    <!--定义文档字符编码-->
+    <meta charset="UTF-8">
+
+    <!--关键词-->
+    <meta name="keywords" content="缓存 meta">
+
+    <!--页面描述-->
+    <meta name="description" content="浏览器缓存及meta学习">
+
+    <!--作者-->
+    <meta name="author" content="zyp">
+
+    <!--viewport属性，用于移动端显示优化-->
+    <meta name="viewport" 
+          content="width=device-width,
+                   initial-scale=1.0,
+                   minimum-scale=0.1,
+                   maximum-scale=2.0
+                   user-scalable=yes"> <!--是否允许用户进行缩放-->
+
+    <!--清理缓存-->
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache,must-revalidata">
+    <meta http-equiv="expires" content="0">
+
+    <!--定义页面刷新频率(s)-->
+    <meta http-equiv="refresh" content="60">
+  </head>
+  <body>
+    浏览器缓存：
+      浏览器的缓存规则是在http协议头和html页面的meta标签中定义的。主要分为强缓存和协商缓存
+      a)强缓存：是指缓存的副本在有效期内，浏览器直接获取这个副本并渲染，强缓存主要涉及的http协议报头有cache-control、Expries
+        过程：浏览器发起http请求，浏览器缓存中查找该请求的结果以及缓存标识，缓存副本在有效期内，该请求返回状态码200，从
+        disk cache或memory cache（size中显示from disk cache或from memory cache）中返回。如果缓存副本并不在有效期内，浏览器
+        将发起http请求到服务端，服务端返回请求结果和缓存规则
+      b)expires：是一个绝对时间，如果浏览器的时间还没有超过这个expires时间，代表缓存有效
+      c)cache-control：public、private、no-cache。优先级高于expires
+      
+      d)协商缓存：在强缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。
+    缓存位置：
+      Service Worker:运行在浏览器背后的独立线程，传输协议必须是HTTPS，可以自由控制缓存哪些文件、如何匹配缓存，如何读取
+      Memory Cache:
+      Disk Cache:
+      Push Cache:
+    清理缓存的几种方式：
+      1.meta方法
+      2.清理form表单的临时缓存
+      3.jquery ajax清除浏览器缓存
+        a)在ajax请求内加cache:false属性
+        b)随机数或随机时间
+      <script>
+        console.log(1);
+      </script>
+  </body>
+</html>
