@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nextTick</title>
+</head>
+<body>
+  Vue中Dom的更新是异步的
+  1.在Vue生命周期的created()钩子函数进行的DOM操作，一定要放在Vue.nextTick()的回调函数中。
+    在created()钩子函数执行的时候DOM其实并未进行任何渲染，因此进行DOM操作没有用，需要nextTick。与之对应的mounted钩子函数，所有DOM
+    都已挂载和渲染完成。
+  2.在数据变化后要执行某个操作，而这个操作需要使用随数据改变而改变的DOM结构的时候，这个操作要放在nextTick回调函数中。
+    原因：Vue异步执行DOM更新，只要观察到数据变化，Vue将开启一个队列，并缓冲在同一事件循环中发生的所有数据改变。
+          如果同一watcher被多次触发，只会被推入到队列中一次。
+</body>
+</html>
