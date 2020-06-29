@@ -49,8 +49,11 @@
         disk cache或memory cache（size中显示from disk cache或from memory cache）中返回。如果缓存副本并不在有效期内，浏览器
         将发起http请求到服务端，服务端返回请求结果和缓存规则
       b)expires：是一个绝对时间，如果浏览器的时间还没有超过这个expires时间，代表缓存有效
-      c)cache-control：public、private、no-cache。优先级高于expires
-      
+      c)cache-control：
+        public
+        private
+        no-cache
+
       d)协商缓存：在强缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程。
     缓存位置：
       Service Worker:运行在浏览器背后的独立线程，传输协议必须是HTTPS，可以自由控制缓存哪些文件、如何匹配缓存，如何读取
