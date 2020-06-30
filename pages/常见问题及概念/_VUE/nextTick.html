@@ -5,6 +5,9 @@
   <title>nextTick</title>
 </head>
 <body>
+  定义：在下次DOM更新循环结束之后执行延时回调，在修改数据之后立即使用这个方法，获取更新后的DOM。因此，放在Vue。nextTick()
+        回调函数中的执行的应该会是对DOM进行操作的js代码
+
   Vue中Dom的更新是异步的
   1.在Vue生命周期的created()钩子函数进行的DOM操作，一定要放在Vue.nextTick()的回调函数中。
     在created()钩子函数执行的时候DOM其实并未进行任何渲染，因此进行DOM操作没有用，需要nextTick。与之对应的mounted钩子函数，所有DOM
