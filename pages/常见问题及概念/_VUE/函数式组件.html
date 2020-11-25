@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <title></title>
+  </head>
+  <body>
+    函数式组件：
+    1.无状态；
+    2.无法实例化；
+    3.内部没有任何生命周期处理函数；
+    4.轻量，渲染性能高，适合只依赖于外部数据传递而变化的组件（展示组件，无逻辑和状态修改）；
+    5.在template标签里标明functional；
+    6.只接受props值；
+    7.不需要script标签。
+
+    函数化组件中的render函数提供两个参数createElement、context，context作为上下文，data、props、slots、children以及parent都可以通过
+    context来访问。
+
+    和正常自定义组件的区别：
+    1.不维护响应数据
+    2.无钩子函数
+    3.没有instance实例，所以组件内部没有办法像传统组件一样通过this来访问组件属性
+    4.精简了许多例如响应式和钩子函数的处理，因此渲染性能高
+  </body>
+</html>
